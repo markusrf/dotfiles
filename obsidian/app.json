@@ -1,0 +1,10 @@
+{
+  "promptDelete": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "Notes",
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "_attachments",
+  "useTab": false,
+  "showLineNumber": false,
+  "alwaysUpdateLinks": true
+}

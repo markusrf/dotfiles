@@ -1,0 +1,65 @@
+{
+  "collapse-filter": true,
+  "search": "-path:_templates",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "tag:person",
+      "color": {
+        "a": 1,
+        "rgb": 3385905
+      }
+    },
+    {
+      "query": "tag:daily",
+      "color": {
+        "a": 1,
+        "rgb": 14930271
+      }
+    },
+    {
+      "query": "tag:task",
+      "color": {
+        "a": 1,
+        "rgb": 5405920
+      }
+    },
+    {
+      "query": "tag:meeting",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    },
+    {
+      "query": "tag:moc",
+      "color": {
+        "a": 1,
+        "rgb": 5431473
+      }
+    },
+    {
+      "query": "tag:weekly",
+      "color": {
+        "a": 1,
+        "rgb": 14912811
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": -0.6,
+  "nodeSizeMultiplier": 1.0031982421875,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.495524088541667,
+  "repelStrength": 9.84049479166667,
+  "linkStrength": 1,
+  "linkDistance": 108,
+  "scale": 0.3273602468129463,
+  "close": true
+}
