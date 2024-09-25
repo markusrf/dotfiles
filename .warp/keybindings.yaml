@@ -1,0 +1,4 @@
+---
+"terminal:copy_outputs": alt-cmd-c
+"input:open_completion_suggestions": tab
+"terminal:copy": cmd-c

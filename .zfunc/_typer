@@ -1,0 +1,7 @@
+#compdef typer
+
+_typer_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _TYPER_COMPLETE=complete_zsh typer)
+}
+
+compdef _typer_completion typer

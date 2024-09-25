@@ -1,0 +1,5 @@
+
+# syntax highlighting
+include "/opt/homebrew/share/nanorc/*.nanorc"
+# default linenumbers
+set linenumbers

@@ -1,0 +1,14 @@
+[user]
+	signingkey = F989D0D14D0D18EE
+	email = 8709797+markusrf@users.noreply.github.com
+	name = Markus Rye Foss
+[commit]
+	gpgsign = true
+[core]
+	editor = nano
+[alias]
+	s = status -s
+	unstage = reset HEAD --
+	ll = log --oneline
+	done = "!CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD); if [ \"$CURRENT_BRANCH\" == \"main\" ]; then echo \"nope, not on main...\"; else git switch main && git branch -D $CURRENT_BRANCH && git pull; fi"
+	ca = commit --amend --no-edit
