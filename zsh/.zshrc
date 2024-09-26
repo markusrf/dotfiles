@@ -195,3 +195,18 @@ alias rest="timer 10m --format 24h && terminal-notifier \
     -sound Crystal"
 
 alias test-ecalc="docker compose run --rm -e DATABASE_BACKEND=local_database -e DB_NAME=ecalc_test_db -e ECALC_ENVIRONMENT=test -e AUTH__USE_MOCK_AUTHENTICATION=True backend poetry run pytest"
+
+function gremote() {
+  git config --get remote.origin.url | sed -E 's/(ssh:\/\/)?git@/https:\/\//' | sed 's/com:/com\//' | sed 's/\.git$//' | head -n1
+}
+
+function ogremote() {
+  open -u $(gremote)
+}
+
+cdi() {
+  p="$(fd -t d -H | fzf)"
+  if [ -n "$p" ]; then
+    cd "$p"
+  fi
+}
