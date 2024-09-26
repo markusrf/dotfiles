@@ -115,6 +115,7 @@ source $ZSH/oh-my-zsh.sh
 alias ls='colorls --sd'
 alias ll='ls -lA'
 alias mkdir='mkdir -p'
+alias path='echo $PATH | tr -s ":" "\n"'
 
 # python
 export PATH="/opt/homebrew/opt/python@3.11/libexec/bin/:$PATH"
@@ -123,6 +124,9 @@ export PATH="/opt/homebrew/bin:$PATH"
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+# fzf
+source <(fzf --zsh)
 
 # poetry
 export PATH="/Users/markus.foss/.local/bin:$PATH"
