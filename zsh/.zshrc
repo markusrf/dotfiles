@@ -169,16 +169,18 @@ alias gitrmb="git branch | cut -c 3- | gum choose --no-limit | xargs git branch 
 
 function gitstage() {
     ADD="Add"
-    RESET="Reset"
+    RESET="Restore"
 
     ACTION=$(gum choose "$ADD" "$RESET")
     echo "$ACTION"
 
     if [[ "$ACTION" == "$ADD" ]]; then
-        git status --short | gum choose --no-limit | cut -c 4- | xargs git add
+        git status --short | gum choose --no-limit | cut -c 4- | cut -w -f1 | xargs git add
     else
-        git status --short | gum choose --no-limit | cut -c 4- | xargs git restore --staged
+        git status --short | gum choose --no-limit | cut -c 4- | cut -w -f1 | xargs git restore --staged
     fi
+
+    git status --short
 }
 
 . "$HOME/.cargo/env"
@@ -204,7 +206,7 @@ function ogremote() {
   open -u $(gremote)
 }
 
-cdi() {
+function cdi() {
   p="$(fd -t d -H | fzf)"
   if [ -n "$p" ]; then
     cd "$p"
