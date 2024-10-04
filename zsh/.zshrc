@@ -219,3 +219,10 @@ function cdi() {
     cd "$p"
   fi
 }
+
+function mvi() {
+  FILES=$(fd -t f -H | fzf -m)
+  FILES="${FILES//$'\n'/ }"
+  TARGET=$(fd -t d -H | fzf)
+  mv $(echo $FILES) "$TARGET"
+}
