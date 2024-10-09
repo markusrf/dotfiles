@@ -195,15 +195,19 @@ function gitstage() {
 . "$HOME/.cargo/env"
 
 # Mac setup for pomo
-alias work="timer 50m --format 24h && terminal-notifier \
-    -message 'Take a break ☕️🤩' \
-    -title 'Work timer is up!' \
-    -sound Crystal"
+function work() {
+    timer ${1:-50}m --format 24h && terminal-notifier \
+        -message 'Take a break ☕️🤩' \
+        -title 'Work timer is up!' \
+        -sound Crystal
+}
 
-alias rest="timer 10m --format 24h && terminal-notifier \
-    -message 'Get back to work 🐸' \
-    -title 'Break is over!' \
-    -sound Crystal"
+function rest() {
+    timer ${1:-10}m --format 24h && terminal-notifier \
+        -message 'Get back to work 🐸' \
+        -title 'Break is over!' \
+        -sound Crystal
+}
 
 alias test-ecalc="docker compose run --rm -e DATABASE_BACKEND=local_database -e DB_NAME=ecalc_test_db -e ECALC_ENVIRONMENT=test -e AUTH__USE_MOCK_AUTHENTICATION=True backend poetry run pytest"
 
