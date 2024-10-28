@@ -112,7 +112,7 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-alias ls='colorls --sd'
+# alias ls='colorls --sd'
 alias ll='ls -lA'
 alias mkdir='mkdir -p'
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -161,7 +161,7 @@ defaults write .GlobalPreferences com.apple.mouse.scaling -1
 
 export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
 
 alias tf='terraform'
@@ -192,7 +192,7 @@ function gitstage() {
     git status --short
 }
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # Mac setup for pomo
 function work() {
