@@ -112,6 +112,17 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Key binds
+# To find the code: press ctrl+v, then the key - it will print the control key code
+# List of zsh commands can be found here: https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Modifying-Text
+bindkey "\e[1;3D" backward-word      # ⌥←
+bindkey "\e[1;3C" forward-word       # ⌥→
+bindkey "^[[1;9D" beginning-of-line  # cmd+←
+bindkey "^[[1;9C" end-of-line        # cmd+→
+# User ctrl+U for 'backward-kill-line'
+
+DISABLE_AUTO_TITLE="true"
+
 # alias ls='colorls --sd'
 alias ll='ls -lA'
 alias mkdir='mkdir -p'
