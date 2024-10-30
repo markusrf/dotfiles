@@ -239,7 +239,13 @@ function cdi() {
 
 function mvi() {
   FILES=$(fd -t f -H | fzf -m)
+  if [[ -z "$FILES" ]]; then
+    return
+  fi
   FILES="${FILES//$'\n'/ }"
   TARGET=$(fd -t d -H | fzf)
+  if [[ -z "$TARGET" ]]; then
+    return
+  fi
   mv $(echo $FILES) "$TARGET"
 }
