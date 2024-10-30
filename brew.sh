@@ -12,6 +12,7 @@ brew install fd
 brew install ffmpeg
 brew install fzf
 brew install git
+brew install git-delta
 brew install gnupg
 brew install gum
 brew install jq
