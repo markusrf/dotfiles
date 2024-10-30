@@ -239,13 +239,15 @@ function cdi() {
 
 function mvi() {
   FILES=$(fd -t f -H | fzf -m)
-  if [[ -z "$FILES" ]]; then
-    return
-  fi
+  [[ -z "$FILES" ]] && return
   FILES="${FILES//$'\n'/ }"
   TARGET=$(fd -t d -H | fzf)
-  if [[ -z "$TARGET" ]]; then
-    return
-  fi
+  [[ -z "$TARGET" ]] && return
   mv $(echo $FILES) "$TARGET"
+}
+
+function gdiff() {
+  FILE=$(git status --short | fzf | cut -c 4-)
+  [[ -z "$FILE" ]] && return
+  git diff "$FILE"
 }
