@@ -14,3 +14,8 @@ brew install snyk
 brew install terraform-docs
 brew install tflint
 brew install tfsec
+
+brew install --cask burp-suite
+brew install --cask docker
+brew install --cask pycharm
+brew install --cask slack

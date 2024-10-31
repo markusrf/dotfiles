@@ -27,9 +27,12 @@ brew install trufflesecurity/trufflehog/trufflehog
 brew install ttyd
 brew install vhs
 
+brew install --cask firefox@developer-edition
+brew install --cask font-fira-code-nerd-font  # https://github.com/tonsky/FiraCode
+brew install --cask obsidian
 brew install --cask rectangle
-# https://github.com/tonsky/FiraCode
-brew install --cask font-fira-code-nerd-font
+brew install --cask spotify
+brew install --cask visual-studio-code
 
 brew install bash
 sudo sh -c "echo $(brew --prefix)/bin/bash >> /etc/shells"
