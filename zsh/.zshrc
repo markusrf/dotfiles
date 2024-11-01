@@ -185,7 +185,7 @@ alias dcd='docker compose down'
 alias gitsha="git log --oneline | gum filter | cut -w -f1"
 alias gitshac="gitsha | pbcopy"
 alias gitrmb="git branch | cut -c 3- | gum choose --no-limit | xargs git branch -D"
-alias gcc="gitsha | xargs git cat-file commit"
+alias gcatc="gitsha | xargs git cat-file commit"
 
 function gitstage() {
     ADD="Add"
