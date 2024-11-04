@@ -1,5 +1,5 @@
 [include]
-  path = ~/.config/git/themes/catppuccin.gitconfig
+	path = ~/.config/git/themes/catppuccin.gitconfig
 [user]
 	signingkey = A7323083D70B4B12
 	email = 8709797+markusrf@users.noreply.github.com
@@ -17,12 +17,12 @@
 	done = "!CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD); if [ \"$CURRENT_BRANCH\" == \"main\" ]; then echo \"nope, not on main...\"; else git switch main && git branch -D $CURRENT_BRANCH && git pull; fi"
 	ca = commit --amend --no-edit
 [delta]
-  features = catppuccin-macchiato
-  side-by-side = false
-  true-color = always
-  hyperlinks = true
-  line-numbers = true
+ 	features = catppuccin-macchiato
+ 	side-by-side = false
+ 	true-color = always
+ 	hyperlinks = true
+ 	line-numbers = true
 [diff]
-  colorMoved = default
+ 	colorMoved = default
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
