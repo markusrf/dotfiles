@@ -123,6 +123,9 @@ bindkey "^[[1;9C" end-of-line        # cmd+→
 
 DISABLE_AUTO_TITLE="true"
 
+# poetry
+export PATH="/Users/markus.foss/.local/bin:$PATH"
+
 # alias ls='colorls --sd'
 alias ll='ls -lA'
 alias mkdir='mkdir -p'
@@ -136,6 +139,13 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
+# disable mouse acceleration
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+
+. $(brew --prefix)/opt/asdf/libexec/asdf.sh
+
 # fzf
 source <(fzf --zsh)
 # fzf catppuccin
@@ -146,8 +156,8 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#494d64 \
 --multi"
 
-# poetry
-export PATH="/Users/markus.foss/.local/bin:$PATH"
+# fzf-git
+source ~/.zsh_scripts/fzf-git.sh
 
 # function to open obsidian
 # arguments:
@@ -167,16 +177,7 @@ function obsidian-code() {
     code ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/vault
 }
 
-# disable mouse acceleration
-defaults write .GlobalPreferences com.apple.mouse.scaling -1
-
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
-
-. $(brew --prefix)/opt/asdf/libexec/asdf.sh
-
-
 alias tf='terraform'
-
 
 alias dcu='docker compose up -d'
 alias dcub='docker compose up -d --build'
@@ -244,10 +245,4 @@ function mvi() {
   TARGET=$(fd -t d -H | fzf)
   [[ -z "$TARGET" ]] && return
   mv $(echo $FILES) "$TARGET"
-}
-
-function gdiff() {
-  FILE=$(git status --short | fzf | cut -c 4-)
-  [[ -z "$FILE" ]] && return
-  git diff "$FILE"
 }
