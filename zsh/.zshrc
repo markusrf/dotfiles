@@ -161,6 +161,10 @@ export FZF_DEFAULT_OPTS=" \
 # fzf-git
 source ~/.zsh_scripts/fzf-git.sh
 
+if [[ -e ~/.work_funcs ]]; then
+  source ~/.work_funcs
+fi
+
 # function to open obsidian
 # arguments:
 #   $1 - vault name
@@ -222,8 +226,6 @@ function rest() {
         -title 'Break is over!' \
         -sound Crystal
 }
-
-alias test-ecalc="docker compose run --rm -e DATABASE_BACKEND=local_database -e DB_NAME=ecalc_test_db -e ECALC_ENVIRONMENT=test -e AUTH__USE_MOCK_AUTHENTICATION=True backend poetry run pytest"
 
 function gremote() {
   git config --get remote.origin.url | sed -E 's/(ssh:\/\/)?git@/https:\/\//' | sed 's/com:/com\//' | sed 's/\.git$//' | head -n1
