@@ -129,7 +129,7 @@ DISABLE_AUTO_TITLE="true"
 export PATH="/Users/markus.foss/.local/bin:$PATH"
 
 # alias ls='colorls --sd'
-alias ll='ls -lA'
+alias ll='ls -lAhG'
 alias mkdir='mkdir -p'
 alias path='echo $PATH | tr -s ":" "\n"'
 
