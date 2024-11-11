@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+brew analytics off
+
 brew update
 brew upgrade
 
