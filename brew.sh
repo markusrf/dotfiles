@@ -32,6 +32,7 @@ brew install vhs
 brew install --cask firefox@developer-edition
 brew install --cask font-fira-code-nerd-font  # https://github.com/tonsky/FiraCode
 brew install --cask keymapp
+brew install --cask kitty
 brew install --cask obsidian
 brew install --cask rectangle
 brew install --cask spotify
