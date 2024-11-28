@@ -235,7 +235,7 @@ function ogremote() {
   open -u $(gremote)
 }
 
-alias opr="open -u \"$(gremote)/compare/$(git rev-parse --abbrev-ref HEAD)?expand=1\""
+alias opr='open -u "$(gremote)/compare/$(git rev-parse --abbrev-ref HEAD)?expand=1"'
 
 function cdi() {
   p="$(fd -t d -H | fzf)"
