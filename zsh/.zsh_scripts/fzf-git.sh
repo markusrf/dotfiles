@@ -153,7 +153,9 @@ _fzf_git_fzf() {
     --border-label-pos=2 \
     --color='header:italic:underline,label:blue' \
     --preview-window='right,50%,border-left' \
-    --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "$@"
+    --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "$@" \
+    --bind='ctrl-f:preview-half-page-down' \
+    --bind='ctrl-b:preview-half-page-up'
 }
 
 _fzf_git_check() {
