@@ -113,6 +113,7 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 setopt globdots
+setopt ignoreeof
 
 # Key binds
 # To find the code: press ctrl+v, then the key - it will print the control key code
