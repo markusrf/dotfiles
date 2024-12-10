@@ -26,3 +26,5 @@
  	colorMoved = default
 [interactive]
 	diffFilter = delta --color-only
+[push]
+	autoSetupRemote = true
