@@ -1,0 +1,41 @@
+gui:
+  scrollHeight: 10
+  mouseEvents: false
+  expandFocusedSidePanel: true
+  showCommandLog: true
+  nerdFontsVersion: "3"
+  theme:
+    # Catppuccin macchiato
+    activeBorderColor:
+      - '#a6da95'
+      - bold
+    inactiveBorderColor:
+      - '#a5adcb'
+    optionsTextColor:
+      - '#8aadf4'
+    selectedLineBgColor:
+      - '#363a4f'
+    cherryPickedCommitBgColor:
+      - '#494d64'
+    cherryPickedCommitFgColor:
+      - '#a6da95'
+    unstagedChangesColor:
+      - '#ed8796'
+    defaultFgColor:
+      - '#cad3f5'
+    searchingActiveBorderColor:
+      - '#eed49f'
+  # authorColors:
+  #   '*': '#b7bdf8'
+  branchColors:
+    'release': '#ee99a0'
+    'main': '#c6a0f6'
+git:
+  paging:
+    pager: "delta --paging=never"
+  # 'cr' - relative date
+  # 'ci' - iso date
+  # 'cs' - short date (YYYY-MM-DD)
+  # 'ch' - human readable
+  branchLogCmd: "git log --graph --color=always --pretty=format:'%C(cyan)%h%Creset %Cgreen%ch%Creset -%C(yellow)%d%Creset %s %C(red)<%an>%Creset' --abbrev-commit {{branchName}} --"
+notARepository: skip

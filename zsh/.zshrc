@@ -125,6 +125,7 @@ bindkey "^[[1;9C" end-of-line        # cmd+→
 # User ctrl+U for 'backward-kill-line'
 
 DISABLE_AUTO_TITLE="true"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # poetry
 export PATH="/Users/markus.foss/.local/bin:$PATH"
@@ -185,6 +186,8 @@ function obsidian-code() {
 }
 
 alias tf='terraform'
+
+alias lg='lazygit'
 
 alias dcu='docker compose up -d'
 alias dcub='docker compose up -d --build'
