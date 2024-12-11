@@ -1,3 +1,4 @@
+#Config docs: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
   scrollHeight: 10
   mouseEvents: false
