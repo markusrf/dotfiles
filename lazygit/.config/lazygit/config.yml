@@ -42,3 +42,12 @@ git:
     showWholeGraph: true
   branchLogCmd: "git log --graph --color=always --pretty=format:'%C(cyan)%h%Creset %Cgreen%ch%Creset -%C(yellow)%d%Creset %s %C(red)<%an>%Creset' --abbrev-commit {{branchName}} --"
 notARepository: skip
+customCommands:
+  - key: 'W'
+    context: 'files'
+    description: 'Amend last commit without pre-commit hook'
+    command: "git commit --amend --no-edit --allow-empty --no-verify"
+    prompts:
+      - type: 'confirm'
+        title: 'Amend last commit without pre-commit'
+        body: 'Are you sure you want to amend last commit without pre-commit hooks? Afterwards, you can change the commit message from the commits panel.'
