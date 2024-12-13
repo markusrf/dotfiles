@@ -5,6 +5,7 @@ brew update
 brew upgrade
 
 brew install azure-cli
+brew install dive
 brew install go
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
