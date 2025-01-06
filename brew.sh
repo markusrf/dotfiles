@@ -21,6 +21,7 @@ brew install jq
 brew install jesseduffield/lazygit/lazygit
 brew install nano
 brew install nanorc
+brew install neovim
 brew install pinentry-mac
 brew install pre-commit
 brew install stow
