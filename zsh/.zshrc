@@ -126,6 +126,7 @@ bindkey "^[[1;9C" end-of-line        # cmd+→
 
 DISABLE_AUTO_TITLE="true"
 export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR=nvim
 
 # poetry
 export PATH="/Users/markus.foss/.local/bin:$PATH"

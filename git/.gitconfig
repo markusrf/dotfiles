@@ -7,7 +7,7 @@
 [commit]
 	gpgsign = true
 [core]
-	editor = nano
+	editor = nvim
 	pager = delta
 	excludesfile = ~/.config/git/ignore
 [alias]
