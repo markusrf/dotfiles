@@ -30,7 +30,8 @@ gui:
   #   '*': '#b7bdf8'
   branchColors:
     'release': '#ee99a0'
-    'main': '#c6a0f6'
+    'wip': '#eed49f'
+    # 'main': '#c6a0f6'
 git:
   paging:
     pager: "delta --paging=never"

@@ -194,7 +194,7 @@ alias dcu='docker compose up -d'
 alias dcub='docker compose up -d --build'
 alias dcd='docker compose down'
 
-alias gitsha="git log --oneline | gum filter | cut -w -f1"
+alias gitsha="git log --oneline --color=always --pretty=format:'%C(cyan)%h%Creset %Cgreen%ch%Creset - %s %C(red)<%an>%Creset' | gum filter | cut -w -f1"
 alias gitshac="gitsha | pbcopy"
 alias gitrmb="git branch | cut -c 3- | gum choose --no-limit | xargs git branch -D"
 alias gcatc="gitsha | xargs git cat-file commit"
