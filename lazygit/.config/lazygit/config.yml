@@ -29,8 +29,9 @@ gui:
   # authorColors:
   #   '*': '#b7bdf8'
   branchColors:
-    'release': '#ee99a0'
-    'wip': '#eed49f'
+    'release': '#ee99a0'  # red
+    'wip': '#eed49f'  # yellow
+    'patch': '#8aadf4'  # blue
     # 'main': '#c6a0f6'
 git:
   paging:
@@ -52,3 +53,7 @@ customCommands:
       - type: 'confirm'
         title: 'Amend last commit without pre-commit'
         body: 'Are you sure you want to amend last commit without pre-commit hooks? Afterwards, you can change the commit message from the commits panel.'
+  - key: 'O'
+    context: 'files'
+    description: 'Open file in VS Code'
+    command: "code {{.SelectedFile.Name}}"
