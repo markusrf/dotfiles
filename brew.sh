@@ -24,6 +24,7 @@ brew install nanorc
 brew install neovim
 brew install pinentry-mac
 brew install pre-commit
+brew install ripgrep
 brew install stow
 brew install terminal-notifier
 brew install caarlos0/tap/timer
