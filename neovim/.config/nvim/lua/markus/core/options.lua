@@ -1,5 +1,8 @@
 vim.cmd("let g:netrw_liststyle = 3")
 vim.cmd.colorscheme "catppuccin-macchiato"
+-- vim.cmd.colorscheme "rose-pine-moon"
+-- vim.cmd.colorscheme "rose-pine-main"
+-- vim.cmd.colorscheme "flexoki-dark"
 
 local opt = vim.opt
 opt.relativenumber = true
