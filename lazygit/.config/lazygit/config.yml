@@ -29,9 +29,11 @@ gui:
   # authorColors:
   #   '*': '#b7bdf8'
   branchColors:
-    'release': '#ee99a0'  # red
-    'wip': '#eed49f'  # yellow
-    'patch': '#8aadf4'  # blue
+    'release': '#ee99a0'   # red
+    'wip': '#eed49f'       # yellow
+    'refactor': '#8bd5ca'  # teal
+    'feat': '#8aadf4'      # blue
+    'patch': '#f5a97f'     # peach
     # 'main': '#c6a0f6'
 git:
   paging:
