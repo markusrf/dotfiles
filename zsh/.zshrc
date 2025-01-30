@@ -189,6 +189,7 @@ function obsidian-code() {
 alias tf='terraform'
 
 alias lg='lazygit'
+alias lzd='lazydocker'
 
 alias dcu='docker compose up -d'
 alias dcub='docker compose up -d --build'

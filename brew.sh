@@ -18,6 +18,7 @@ brew install git-delta
 brew install gnupg
 brew install gum
 brew install jq
+brew install jesseduffield/lazydocker/lazydocker
 brew install jesseduffield/lazygit/lazygit
 brew install nano
 brew install nanorc
