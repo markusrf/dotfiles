@@ -13,6 +13,7 @@ brew install curl
 brew install fd
 brew install ffmpeg
 brew install fzf
+brew install gh
 brew install git
 brew install git-delta
 brew install gnupg
