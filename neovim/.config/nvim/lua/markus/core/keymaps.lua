@@ -43,10 +43,6 @@ vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", {desc="Toggle file 
 vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", {desc="Toggle file explore on current file"})
 vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", {desc="Collapse file explore"})
 vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", {desc="Refresh file explorer"})
---vim.keymap.set("n", "l", edit_or_open,          {desc="Edit Or Open"})
---vim.keymap.set("n", "L", vsplit_preview,        {desc="Vsplit Preview"})
---vim.keymap.set("n", "h", api.tree.close,        {desc="Close"})
---vim.keymap.set("n", "H", api.tree.collapse_all, {desc="Collapse All"})
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
