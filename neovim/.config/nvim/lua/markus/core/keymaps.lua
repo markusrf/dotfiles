@@ -9,35 +9,27 @@ vim.keymap.set("n", "<leader>-", "<C-x>", {desc = "Decrement Number"}) -- decrem
 -- nvim.tree
 local api = require("nvim-tree.api")
 
-local function edit_or_open()
-  local node = api.tree.get_node_under_cursor()
+-- better indenting
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
-  if node.nodes ~= nil then
-    -- expand or collapse folder
-    api.node.open.edit()
-  else
-    -- open file
-    api.node.open.edit()
-    -- Close the tree if file was opened
-    api.tree.close()
-  end
-end
+-- Move to window using the <ctrl> hjkl keys
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
--- open as vsplit on current node
-local function vsplit_preview()
-  local node = api.tree.get_node_under_cursor()
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
-  if node.nodes ~= nil then
-    -- expand or collapse folder
-    api.node.open.edit()
-  else
-    -- open file as vsplit
-    api.node.open.vertical()
-  end
+-- Save All
+vim.keymap.set("n", "<leader>w", "<cmd>wa!<CR>", { desc = "Save all" })
+-- Quit all
+vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all" })
 
-  -- Finally refocus on tree if it was lost
-  api.tree.focus()
-end
 
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", {desc="Toggle file explorer"})
 vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", {desc="Toggle file explore on current file"})

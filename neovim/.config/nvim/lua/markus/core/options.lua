@@ -5,9 +5,9 @@ vim.cmd.colorscheme "catppuccin-macchiato"
 -- vim.cmd.colorscheme "flexoki-dark"
 
 local opt = vim.opt
+opt.number = true
 opt.relativenumber = true
 
-opt.number = true
 
 -- tabs & indentation
 opt.tabstop = 2
