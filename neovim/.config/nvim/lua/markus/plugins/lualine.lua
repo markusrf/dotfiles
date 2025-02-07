@@ -10,7 +10,7 @@ return {
             --         a = { fg = 'black', bg = 'red' }
             --     }
             -- },
-            section_separators = {  left = "", right = "" },
+            section_separators = {  left = "", right = "" },
             component_separators = { left = " ", right = " " },
         },
         sections = {
