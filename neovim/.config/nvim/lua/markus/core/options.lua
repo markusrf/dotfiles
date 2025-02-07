@@ -7,15 +7,13 @@ vim.cmd.colorscheme "catppuccin-macchiato"
 local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
+opt.tabstop = 4         -- Number of spaces per tab
+opt.shiftwidth = 4      -- Indentation width
+opt.expandtab = true    -- Convert tabs to spaces
+opt.autoindent = true   -- Copy indent of current line to new line
+opt.smartindent = true  -- Auto-indent new lines
+opt.termguicolors = true -- Enable true color support
 
-
--- tabs & indentation
-opt.tabstop = 2
-opt.shiftwidth = 2    -- 2 spaces for indent width
-opt.expandtab = true  -- expand tab to spaces
-opt.autoindent = true -- copy indent of current line to new line
-
--- :h autoindent for help
 
 opt.wrap = false
 
@@ -23,11 +21,8 @@ opt.wrap = false
 opt.ignorecase = true -- case insensitive search
 opt.smartcase = true -- uses mixed case for case sensitive search
 
--- opt.cursorline = true
+opt.cursorline = true
 
--- turn on termguicolors for tokyonight colorscheme to work
-
--- opt.termguicolors = true
 opt.background = "dark" -- colorschemes can be light or dark
 opt.signcolumn = "yes" -- show sign column so that text doesnt shift
 
