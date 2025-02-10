@@ -7,8 +7,8 @@ vim.cmd.colorscheme "catppuccin-macchiato"
 local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
-opt.tabstop = 4         -- Number of spaces per tab
-opt.shiftwidth = 4      -- Indentation width
+opt.tabstop = 2         -- Number of spaces per tab
+opt.shiftwidth = 2      -- Indentation width
 opt.expandtab = true    -- Convert tabs to spaces
 opt.autoindent = true   -- Copy indent of current line to new line
 opt.smartindent = true  -- Auto-indent new lines
