@@ -14,12 +14,28 @@ return {
             component_separators = { left = " ", right = " " },
         },
         sections = {
-            lualine_a = { "mode" },
+            lualine_a = {
+                { "mode", separator = { left = '' } },
+            },
             lualine_b = { "branch", "diff", "diagnostics" },
             lualine_c = { "filename", "searchcount" },
-            lualine_x = { "encoding", "fileformat", "filetype" },
+            lualine_x = {
+                "encoding",
+                {
+                    "fileformat",
+                    symbols = {
+                        -- unix = '', -- e712
+                        unix = '', -- e711
+                        dos = '',  -- e70f
+                        mac = '',  -- e711
+                    }
+                },
+                "filetype"
+            },
             lualine_y = { "progress" },
-            lualine_z = { "location" },
+            lualine_z = {
+                { "location", separator = { right = '' } },
+            },
         },
         extensions = { "oil", "nvim-tree" },
     })
