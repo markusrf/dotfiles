@@ -45,3 +45,6 @@ brew install --cask visual-studio-code
 
 brew install bash
 sudo sh -c "echo $(brew --prefix)/bin/bash >> /etc/shells"
+
+gh extension install dlvhdr/gh-dash
+
