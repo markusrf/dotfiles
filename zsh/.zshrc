@@ -87,6 +87,8 @@ if [[ -e ~/.work_funcs ]]; then
   source ~/.work_funcs
 fi
 
+eval "$(zoxide init zsh)"
+
 # function to open obsidian
 # arguments:
 #   $1 - vault name
@@ -161,13 +163,6 @@ function ogremote() {
 }
 
 alias opr='open -u "$(gremote)/compare/$(git rev-parse --abbrev-ref HEAD)?expand=1"'
-
-function cdi() {
-  p="$(fd -t d -H | fzf)"
-  if [ -n "$p" ]; then
-    cd "$p"
-  fi
-}
 
 function mvi() {
   FILES=$(fd -t f -H | fzf -m)

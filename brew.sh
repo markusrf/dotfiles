@@ -34,6 +34,7 @@ brew install caarlos0/tap/timer
 brew install trufflesecurity/trufflehog/trufflehog
 brew install ttyd
 brew install vhs
+brew install zoxide
 
 brew install --cask firefox@developer-edition
 brew install --cask font-fira-code-nerd-font  # https://github.com/tonsky/FiraCode
