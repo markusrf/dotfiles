@@ -29,6 +29,7 @@ brew install pre-commit
 brew install ripgrep
 brew install stow
 brew install terminal-notifier
+brew install tree
 brew install caarlos0/tap/timer
 brew install trufflesecurity/trufflehog/trufflehog
 brew install ttyd
