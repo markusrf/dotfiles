@@ -76,7 +76,8 @@ return {
         },
       },
       filters = {
-        custom = { ".DS_Store" },
+        custom = { ".DS_Store", "^\\.git$" },
+        exclude = { ".env", "libecalc" },
       },
       git = {
         ignore = false,

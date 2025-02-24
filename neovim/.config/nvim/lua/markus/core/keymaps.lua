@@ -26,9 +26,9 @@ vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decreas
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Save All
-vim.keymap.set("n", "<leader>w", "<cmd>wa!<CR>", { desc = "Save all" })
+vim.keymap.set("n", "<leader>wa", "<cmd>wa!<CR>", { desc = "Save all" })
 -- Quit all
-vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader>qa", "<cmd>qa<CR>", { desc = "Quit all" })
 
 
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", {desc="Toggle file explorer"})
