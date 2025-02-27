@@ -44,16 +44,6 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
-local root_files = {
-  'pyproject.toml',
-  'setup.py',
-  'setup.cfg',
-  'requirements.txt',
-  'Pipfile',
-  'pyrightconfig.json',
-  '.git',
-}
-
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -115,6 +105,7 @@ return {
           }
         end,
 
+        -- TODO - configure pyright, formatter, mypy etc
         ["pyright"] = function()
           local lspconfig = require("lspconfig")
           lspconfig.pyright.setup {
