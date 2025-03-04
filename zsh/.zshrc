@@ -87,7 +87,7 @@ if [[ -e ~/.work_funcs ]]; then
   source ~/.work_funcs
 fi
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 # function to open obsidian
 # arguments:
