@@ -1,3 +1,5 @@
+local grep_args = { "-.", "-g=!.git/**", "-g=!**/dist/**" }
+
 return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.8",
@@ -11,10 +13,10 @@ return {
           show_untracked = true,
         },
         grep_string = {
-          additional_args = { "-.", "-g=!.git/**" },
+          additional_args = grep_args,
         },
         live_grep = {
-          additional_args = { "-.", "-g=!.git/**" },
+          additional_args = grep_args,
         }
       },
     }
