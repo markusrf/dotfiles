@@ -31,8 +31,7 @@ vim.keymap.set("n", "<leader>wa", "<cmd>wa!<CR>", { desc = "Save all" })
 vim.keymap.set("n", "<leader>qa", "<cmd>qa<CR>", { desc = "Quit all" })
 
 
-vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", {desc="Toggle file explorer"})
-vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", {desc="Toggle file explore on current file"})
+vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", {desc="Toggle file explorer"})
 vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", {desc="Collapse file explore"})
 vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", {desc="Refresh file explorer"})
 
