@@ -6,9 +6,6 @@ vim.keymap.set("n", "<leader>+", "<C-a>", {desc = "Increment Number"}) -- increm
 vim.keymap.set("n", "<leader>-", "<C-x>", {desc = "Decrement Number"}) -- decrement
 
 
--- nvim.tree
-local api = require("nvim-tree.api")
-
 -- better indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
@@ -30,14 +27,8 @@ vim.keymap.set("n", "<leader>wa", "<cmd>wa!<CR>", { desc = "Save all" })
 -- Quit all
 vim.keymap.set("n", "<leader>qa", "<cmd>qa<CR>", { desc = "Quit all" })
 
-
+-- nvim.tree
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", {desc="Toggle file explorer"})
 vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", {desc="Collapse file explore"})
 vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", {desc="Refresh file explorer"})
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
