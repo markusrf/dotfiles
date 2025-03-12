@@ -19,6 +19,17 @@ return {
           additional_args = grep_args,
         }
       },
+      defaults = {
+        layout_strategy = "vertical",
+      },
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case"
+        }
+      }
     }
 
     local builtin = require("telescope.builtin")
