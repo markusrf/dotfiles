@@ -42,6 +42,7 @@ local on_attach = function(_, bufnr)
       vim.lsp.buf.formatting()
     end
   end, { desc = 'Format current buffer with LSP' })
+  nmap('<leader>gf', '<CMD>Format<CR>', '[F]ormat buffer with LSP')
 end
 
 return {
@@ -80,6 +81,8 @@ return {
         "lua_ls",
         "pyright",
         "ts_ls",
+        "terraformls",
+        "bashls",
       },
       handlers = {
         function(server_name) -- default handler (optional)
@@ -127,6 +130,7 @@ return {
               },
             },
           }
+          lspconfig.ruff.setup({})
         end
       }
     })
@@ -144,11 +148,12 @@ return {
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
+        ["<S-Esc>"] = cmp.mapping.abort(),
       }),
       sources = cmp.config.sources({
           -- { name = "copilot", group_index = 2 },
           { name = 'nvim_lsp' },
-          { name = 'luasnip' },       -- For luasnip users.
+          { name = 'luasnip' }, -- For luasnip users.
         },
         {
           { name = 'buffer' },
