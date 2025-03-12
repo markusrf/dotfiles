@@ -48,6 +48,15 @@ return {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = { "markdown" },
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-n>",
+          node_incremental = "<C-n>",
+          scope_incremental = "<C-s>",
+          node_decremental = "<C-m>",
+        },
+      },
     })
 
     local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
