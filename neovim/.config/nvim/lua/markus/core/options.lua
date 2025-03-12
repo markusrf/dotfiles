@@ -13,6 +13,7 @@ opt.expandtab = true    -- Convert tabs to spaces
 opt.autoindent = true   -- Copy indent of current line to new line
 opt.smartindent = true  -- Auto-indent new lines
 opt.termguicolors = true -- Enable true color support
+opt.scrolloff = 4
 
 
 opt.wrap = false
