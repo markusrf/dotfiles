@@ -35,6 +35,7 @@ gui:
     'refactor': '#8bd5ca'  # teal
     'feat': '#8aadf4'      # blue
     'release': '#c6a0f6'   # mauve
+    'chore': '#f0c6c6'     # flamingo
 git:
   paging:
     pager: "delta --paging=never"
