@@ -1,5 +1,8 @@
 {
   "venvPath": ".",
   "venv": ".venv",
-  "typeCheckingMode": "off"
+  "typeCheckingMode": "off",
+  "autoSearchPaths": true,
+  "useLibraryCodeForTypes": true,
+  "diagnosticMode": "openFilesOnly"
 }

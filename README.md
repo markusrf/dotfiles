@@ -8,6 +8,6 @@ ln -s "$(realpath ~)/.config/pypoetry/config.toml" "$(realpath ~)/Library/Applic
 
 And this for each project:
 ```sh
-ln -s "$(realpath ~)/.config/nvim/pyrightconfig.json project/path/pyrightconfig.json"
+ln -s "$(realpath ~)/.config/nvim/pyrightconfig-global.json" "project/path/pyrightconfig.json"
 ```
 
