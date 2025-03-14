@@ -126,6 +126,7 @@ return {
                   -- autoSearchPaths = true,
                   -- useLibraryCodeForTypes = true,
                   -- diagnosticMode = 'openFilesOnly',
+                  -- typeCheckingMode = "off", -- off, basic, standard, strict
                 },
               },
             },
