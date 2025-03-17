@@ -21,6 +21,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
+
 return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.8",
