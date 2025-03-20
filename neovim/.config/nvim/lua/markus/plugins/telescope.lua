@@ -13,6 +13,7 @@ local default_args = {
   "--glob=!**/build/*",
   "--glob=!**/dist/*",
   "--glob=!**/main/data/*",
+  "--glob=!**/.DS_Store",
 }
 
 local grep_args = {
