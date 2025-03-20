@@ -1,4 +1,35 @@
-local grep_args = { "-.", "-g=!.git/**", "-g=!**/dist/**" }
+local default_args = {
+  "--hidden",
+  "--no-ignore",
+  "--glob=!**/.git/*",
+  "--glob=!**/.venv/*",
+  "--glob=!**/.idea/*",
+  "--glob=!**/.vscode/*",
+  "--glob=!**/.mypy_cache/*",
+  "--glob=!**/.pytest_cache/*",
+  "--glob=!**/.ruff_cache/*",
+  "--glob=!**/__pycache__/*",
+  "--glob=!**/node_modules/*",
+  "--glob=!**/build/*",
+  "--glob=!**/dist/*",
+  "--glob=!**/main/data/*",
+}
+
+local grep_args = {
+  "--glob=!**/package-lock.json",
+  "--glob=!**/poetry.lock",
+}
+for _, v in ipairs(default_args) do
+  table.insert(grep_args, v)
+end
+
+local find_command = {
+  "rg",
+  "--files",
+}
+for _, v in ipairs(default_args) do
+  table.insert(find_command, v)
+end
 
 local function filename_first(_, path)
 	local tail = vim.fs.basename(path)
@@ -21,6 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Set linenumbers in preview pane
 vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
 
 return {
@@ -32,6 +64,7 @@ return {
     require("telescope").setup {
       pickers = {
         find_files = {
+          find_command = find_command,
         },
         git_files = {
           show_untracked = true,
