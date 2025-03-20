@@ -18,20 +18,11 @@ return {
           { "mode", separator = { left = '' } },
         },
         lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename", "searchcount" },
-        lualine_x = {
-          "encoding",
-          {
-            "fileformat",
-            symbols = {
-              -- unix = '', -- e712
-              unix = '', -- e711
-              dos = '', -- e70f
-              mac = '', -- e711
-            }
-          },
-          "filetype"
+        lualine_c = {
+          { "filename", path=4 },
+          "searchcount"
         },
+        lualine_x = { "encoding", "filetype" },
         lualine_y = { "progress" },
         lualine_z = {
           { "location", separator = { right = '' } },
