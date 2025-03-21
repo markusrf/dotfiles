@@ -47,8 +47,12 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_call(ctx.buf, function()
 			vim.fn.matchadd("TelescopeParent", "\t\t.*$")
 			vim.api.nvim_set_hl(0, "TelescopeParent", {
-        link = "Comment",
-      })
+			     link = "Comment",
+			   })
+			vim.fn.matchadd("TelescopeParent2", "▏.*$")
+			vim.api.nvim_set_hl(0, "TelescopeParent2", {
+			     link = "Normal",
+			   })
 		end)
 	end,
 })
@@ -75,6 +79,10 @@ return {
         },
         live_grep = {
           additional_args = grep_args,
+        },
+        lsp_references = {
+          trim_text = true,
+          fname_width = 120,
         }
       },
       defaults = {
