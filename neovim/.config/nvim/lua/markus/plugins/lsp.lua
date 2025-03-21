@@ -133,10 +133,6 @@ return {
           --     },
           --   },
           -- }
-          lspconfig.basedpyright.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-          })
           lspconfig.ruff.setup({
             capabilities = capabilities,
             -- init_options = {
@@ -147,7 +143,24 @@ return {
             --   }
             -- }
           })
-        end
+        end,
+
+        ["basedpyright"] = function ()
+          local lspconfig = require("lspconfig")
+          lspconfig.basedpyright.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+              basedpyright = {
+                analysis = {
+                  typeCheckingMode = "off",
+                  extraPaths = {
+                  },
+                }
+              }
+            }
+          })
+        end,
       }
     })
 
