@@ -80,6 +80,8 @@ return {
       ensure_installed = {
         "lua_ls",
         "pyright",
+        "basedpyright",
+        "ruff",
         "ts_ls",
         "terraformls",
         "bashls",
@@ -111,27 +113,40 @@ return {
         -- TODO - configure pyright, formatter, mypy etc
         ["pyright"] = function()
           local lspconfig = require("lspconfig")
-          lspconfig.pyright.setup {
+          -- lspconfig.pyright.setup {
+          --   capabilities = capabilities,
+          --   on_attach = on_attach,
+          --   -- cmd = { 'pyright-langserver', '--stdio' },
+          --   -- filetypes = { 'python' },
+          --   -- root_dir = function(fname)
+          --   --   return util.root_pattern(unpack(root_files))(fname)
+          --   -- end,
+          --   single_file_support = true,
+          --   settings = {
+          --     python = {
+          --       analysis = {
+          --         -- autoSearchPaths = true,
+          --         -- useLibraryCodeForTypes = true,
+          --         -- diagnosticMode = 'openFilesOnly',
+          --         -- typeCheckingMode = "off", -- off, basic, standard, strict
+          --       },
+          --     },
+          --   },
+          -- }
+          lspconfig.basedpyright.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            -- cmd = { 'pyright-langserver', '--stdio' },
-            -- filetypes = { 'python' },
-            -- root_dir = function(fname)
-            --   return util.root_pattern(unpack(root_files))(fname)
-            -- end,
-            single_file_support = true,
-            settings = {
-              python = {
-                analysis = {
-                  -- autoSearchPaths = true,
-                  -- useLibraryCodeForTypes = true,
-                  -- diagnosticMode = 'openFilesOnly',
-                  -- typeCheckingMode = "off", -- off, basic, standard, strict
-                },
-              },
-            },
-          }
-          lspconfig.ruff.setup({})
+          })
+          lspconfig.ruff.setup({
+            capabilities = capabilities,
+            -- init_options = {
+            --   settings = {
+            --     -- Docs: https://docs.astral.sh/ruff/editors/settings/#ignore
+            --     lint = {
+            --     }
+            --   }
+            -- }
+          })
         end
       }
     })
