@@ -16,6 +16,9 @@ return {
           return m ~= nil
         end
       },
+      float = {
+        padding = 4,
+      },
       keymaps = {
         ["gd"] = {
           desc = "Toggle file detail view",
