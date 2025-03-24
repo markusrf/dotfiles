@@ -1,5 +1,5 @@
 -- press n to remove highlights
-vim.keymap.set("n", "<leader>nh", ":nohl<CR>", {desc="Clear search highlights"})
+vim.keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", {desc="Clear search highlights"})
 
 -- increment and decrement numbers
 vim.keymap.set("n", "<leader>+", "<C-a>", {desc = "Increment Number"}) -- increment
