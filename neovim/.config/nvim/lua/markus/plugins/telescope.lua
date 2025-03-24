@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			   })
 			vim.fn.matchadd("TelescopeParent2", "▏.*$")
 			vim.api.nvim_set_hl(0, "TelescopeParent2", {
-			     link = "Normal",
+			     link = "TelescopeMatching",
 			   })
 		end)
 	end,
