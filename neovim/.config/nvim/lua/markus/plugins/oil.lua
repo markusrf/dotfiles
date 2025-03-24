@@ -11,6 +11,10 @@ return {
     oil.setup({
       view_options = {
         show_hidden = true,
+        is_always_hidden = function(name, bufnr)
+          local m = name:match("^.DS_Store$")
+          return m ~= nil
+        end
       },
       keymaps = {
         ["gd"] = {
@@ -26,7 +30,8 @@ return {
         },
       },
     })
-    vim.keymap.set("n", "-", oil.toggle_float, {})
+    vim.keymap.set("n", "-", function()
+      oil.open_float(nil, { preview = { vertical = true } })
+    end, {})
   end
 }
-
