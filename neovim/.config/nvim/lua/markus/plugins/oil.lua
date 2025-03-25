@@ -1,7 +1,8 @@
+local detail = false
+
 return {
-  'stevearc/oil.nvim',
-  ---@module 'oil'
-  ---@type oil.SetupOpts
+  "stevearc/oil.nvim",
+  ---@module "oil"
   opts = {},
   -- Optional dependencies
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
@@ -11,7 +12,7 @@ return {
     oil.setup({
       view_options = {
         show_hidden = true,
-        is_always_hidden = function(name, bufnr)
+        is_always_hidden = function(name)
           local m = name:match("^.DS_Store$")
           return m ~= nil
         end
