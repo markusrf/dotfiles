@@ -43,6 +43,13 @@ local on_attach = function(_, bufnr)
     end
   end, { desc = 'Format current buffer with LSP' })
   nmap('<leader>gf', '<CMD>Format<CR>', '[F]ormat buffer with LSP')
+
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "terraform",
+    callback = function()
+      vim.bo.commentstring = "# %s"
+    end
+  })
 end
 
 return {
