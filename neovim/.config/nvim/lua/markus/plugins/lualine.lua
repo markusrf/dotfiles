@@ -1,13 +1,13 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },   -- Optional for icons
+  dependencies = { "nvim-tree/nvim-web-devicons" }, -- Optional for icons
   config = function()
     require("lualine").setup({
       options = {
-        theme = "auto",         -- Change theme (examples: "onedark", "tokyonight", "dracula")
+        theme = "auto", -- Change theme (examples: "onedark", "tokyonight", "dracula")
         -- theme = {
         --     normal = {
-        --         a = { fg = 'black', bg = 'red' }
+        --         a = { fg = "black", bg = "red" }
         --     }
         -- },
         section_separators = { left = "", right = "" },
@@ -15,17 +15,17 @@ return {
       },
       sections = {
         lualine_a = {
-          { "mode", separator = { left = '' } },
+          { "mode", separator = { left = "", right = "" } },
         },
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = {
-          { "filename", path=4 },
+          { "filename", path = 4 },
           "searchcount"
         },
         lualine_x = { "encoding", "filetype" },
         lualine_y = { "progress" },
         lualine_z = {
-          { "location", separator = { right = '' } },
+          { "location", separator = { left = "", right = "" } },
         },
       },
       extensions = { "oil", "nvim-tree" },
