@@ -48,26 +48,15 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 export DOTFILES=$HOME/code/dotfiles
 
-# poetry
-export PATH="/Users/markus.foss/.local/bin:$PATH"
-
-# alias ls='colorls --sd'
-alias ll='ls -lAhG'
-alias mkdir='mkdir -p'
-alias path='echo $PATH | tr -s ":" "\n"'
-
-# python
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.11/libexec/bin/:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
-# disable mouse acceleration
-defaults write .GlobalPreferences com.apple.mouse.scaling -1
-
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 
 . $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
@@ -84,30 +73,25 @@ export FZF_DEFAULT_OPTS=" \
 # fzf-git
 source ~/.zsh_scripts/fzf-git.sh
 
+eval "$(zoxide init zsh --cmd cd)"
+
+
+
 if [[ -e ~/.work_funcs ]]; then
   source ~/.work_funcs
 fi
 
-eval "$(zoxide init zsh --cmd cd)"
 
-# function to open obsidian
-# arguments:
-#   $1 - vault name
-#   $2 - file name
-function obsidian() {
-    COMMAND="open \"obsidian://open"
-    [ -z "$1" ] && VAULT="" || VAULT="?vault=$1"
-    [ -z "$2" ] && FILE="" || FILE="&file=$2"
-    COMMAND="$COMMAND$VAULT$FILE\""
-    echo "$COMMAND"
-    eval "$COMMAND"
-}
+###########
+# ALIASES #
+###########
 
-# open obsidian vault in VS Code
-function obsidian-code() {
-    code ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/vault
-}
+# alias ls='colorls --sd'
+alias ll='ls -lAhG'
+alias mkdir='mkdir -p'
+alias path='echo $PATH | tr -s ":" "\n"'
 
+# python
 alias bb-check='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle check --file=-'
 alias bb-install='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle install --file=-'
 alias bb-cleanup='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle cleanup --file=-'
@@ -126,23 +110,30 @@ alias gitshac="gitsha | pbcopy"
 alias gitrmb="git branch | cut -c 3- | gum choose --no-limit | xargs git branch -D"
 alias gcatc="gitsha | xargs git cat-file commit"
 
-function gitstage() {
-    ADD="Add"
-    RESET="Restore"
+alias printcolors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'"'"'\n'"'"'}; done'
 
-    ACTION=$(gum choose "$ADD" "$RESET")
-    echo "$ACTION"
 
-    if [[ "$ACTION" == "$ADD" ]]; then
-        git status --short | gum choose --no-limit | cut -c 4- | cut -w -f1 | xargs git add
-    else
-        git status --short | gum choose --no-limit | cut -c 4- | cut -w -f1 | xargs git restore --staged
-    fi
+#############
+# FUNCTIONS #
+#############
 
-    git status --short
+# function to open obsidian
+# arguments:
+#   $1 - vault name
+#   $2 - file name
+function obsidian() {
+    COMMAND="open \"obsidian://open"
+    [ -z "$1" ] && VAULT="" || VAULT="?vault=$1"
+    [ -z "$2" ] && FILE="" || FILE="&file=$2"
+    COMMAND="$COMMAND$VAULT$FILE\""
+    echo "$COMMAND"
+    eval "$COMMAND"
 }
 
-# . "$HOME/.cargo/env"
+# open obsidian vault in VS Code
+function obsidian-code() {
+    code ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/vault
+}
 
 # Mac setup for pomo
 function work() {
@@ -167,8 +158,6 @@ function ogremote() {
   open -u $(gremote)
 }
 
-alias opr='open -u "$(gremote)/compare/$(git rev-parse --abbrev-ref HEAD)?expand=1"'
-
 function mvi() {
   FILES=$(fd -t f -H | fzf -m)
   [[ -z "$FILES" ]] && return
@@ -177,6 +166,4 @@ function mvi() {
   [[ -z "$TARGET" ]] && return
   mv $(echo $FILES) "$TARGET"
 }
-
-alias printcolors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'"'"'\n'"'"'}; done'
 
