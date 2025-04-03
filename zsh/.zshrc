@@ -46,6 +46,7 @@ bindkey "^[[1;9C" end-of-line        # cmd+→
 DISABLE_AUTO_TITLE="true"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
+export DOTFILES=$HOME/code/dotfiles
 
 # poetry
 export PATH="/Users/markus.foss/.local/bin:$PATH"
@@ -106,6 +107,10 @@ function obsidian() {
 function obsidian-code() {
     code ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/vault
 }
+
+alias bb-check='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle check --file=-'
+alias bb-install='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle install --file=-'
+alias bb-cleanup='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle cleanup --file=-'
 
 alias tf='terraform'
 
