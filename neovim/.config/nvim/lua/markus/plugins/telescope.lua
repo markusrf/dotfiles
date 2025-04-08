@@ -104,7 +104,11 @@ return {
     vim.keymap.set("n", "<leader>ff", builtin.find_files,      { desc = "Telescope find files" })
     vim.keymap.set("n", "<leader>fF", builtin.git_files,       { desc = "Telescope find git files" })
     vim.keymap.set("n", "<leader>fo", builtin.oldfiles,        { desc = "Telescope oldfiles" })
-    vim.keymap.set("n", "<leader>fb", builtin.buffers,         { desc = "Telescope buffers" })
+    vim.keymap.set("n", "<leader>fb", function ()
+      builtin.buffers({ sort_lastused = true })
+    end,
+      { desc = "Telescope buffers" }
+    )
     vim.keymap.set("n", "<leader>fh", builtin.help_tags,       { desc = "Telescope help tags" })
     vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Telescope command history" })
     vim.keymap.set("n", "<leader>fC", builtin.commands,        { desc = "Telescope commands" })
