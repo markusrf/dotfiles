@@ -91,10 +91,10 @@ alias ll='ls -lAhG'
 alias mkdir='mkdir -p'
 alias path='echo $PATH | tr -s ":" "\n"'
 
-# python
-alias bb-check='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle check --file=-'
-alias bb-install='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle install --file=-'
-alias bb-cleanup='cd $DOTFILES; cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle cleanup --file=-'
+alias bb-check='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle check --no-upgrade --file=-'
+alias bb-install='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle install --no-upgrade --file=-'
+alias bb-install='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle upgrade --file=-'
+alias bb-cleanup='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle cleanup --file=-'
 
 alias tf='terraform'
 
