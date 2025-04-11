@@ -21,10 +21,10 @@ local on_attach = function(_, bufnr)
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-  nmap('<leader>dn', function ()
+  nmap('<leader>dn', function()
     vim.diagnostic.jump({ count = 1, float = true })
   end, 'Jump to next diagnostic')
-  nmap('<leader>dp', function ()
+  nmap('<leader>dp', function()
     vim.diagnostic.jump({ count = -1, float = true })
   end, 'Jump to previous diagnostic')
 
@@ -158,7 +158,7 @@ return {
           })
         end,
 
-        ["basedpyright"] = function ()
+        ["basedpyright"] = function()
           local lspconfig = require("lspconfig")
           lspconfig.basedpyright.setup({
             capabilities = capabilities,
@@ -193,13 +193,19 @@ return {
         ["<S-Esc>"] = cmp.mapping.abort(),
       }),
       sources = cmp.config.sources({
-          -- { name = "copilot", group_index = 2 },
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' }, -- For luasnip users.
+          { name = 'nvim_lsp', priority = 8 },
+          { name = 'luasnip',  priority = 7 }, -- For luasnip users.
         },
         {
-          { name = 'buffer' },
-        })
+          { name = 'buffer', priority = 6 },
+        }),
+      comparators = {
+        cmp.config.compare.locality,
+        cmp.config.compare.recently_used,
+        cmp.config.compare.score,
+        cmp.config.compare.offset,
+        cmp.config.compare.order,
+      },
     })
 
     vim.diagnostic.config({
