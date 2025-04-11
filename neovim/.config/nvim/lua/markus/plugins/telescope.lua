@@ -67,10 +67,18 @@ return {
   -- commit = "814f102cd1da3dc78c7d2f20f2ef3ed3cdf0e6e4",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
+    local actions = require("telescope.actions")
     require("telescope").setup {
       pickers = {
         find_files = {
           find_command = find_command,
+        },
+        buffers = {
+          mappings = {
+            i = {
+              ["<C-w>"] = actions.delete_buffer,
+            }
+          }
         },
         git_files = {
           show_untracked = true,
@@ -84,7 +92,7 @@ return {
         lsp_references = {
           trim_text = true,
           fname_width = 120,
-        }
+        },
       },
       defaults = {
         layout_strategy = "vertical",
