@@ -113,7 +113,7 @@ return {
     vim.keymap.set("n", "<leader>fF", builtin.git_files,       { desc = "Telescope find git files" })
     vim.keymap.set("n", "<leader>fo", builtin.oldfiles,        { desc = "Telescope oldfiles" })
     vim.keymap.set("n", "<leader>fb", function ()
-      builtin.buffers({ sort_lastused = true })
+      builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
     end,
       { desc = "Telescope buffers" }
     )
