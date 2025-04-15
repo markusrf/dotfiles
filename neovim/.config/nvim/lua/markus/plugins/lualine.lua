@@ -18,7 +18,11 @@ return {
         lualine_a = {
           { "mode", separator = { left = "", right = "" } },
         },
-        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_b = {
+          -- "branch",
+          "diff",
+          "diagnostics",
+        },
         lualine_c = {
           { "filename", path = 4 },
           "searchcount"
