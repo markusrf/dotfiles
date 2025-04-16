@@ -35,6 +35,7 @@ brew "trufflesecurity/trufflehog/trufflehog"
 
 cask "firefox@developer-edition"
 cask "font-fira-code-nerd-font"
+cask "font-monaspace"
 cask "keymapp"
 cask "obsidian"
 cask "rectangle"
