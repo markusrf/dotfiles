@@ -34,28 +34,28 @@ for _, v in ipairs(default_args) do
 end
 
 local function filename_first(_, path)
-	local tail = vim.fs.basename(path)
-	local parent = vim.fs.dirname(path)
-	if parent == "." then
-		return string.format("%s\t\t", tail)
-	end
-	return string.format("%s\t\t%s\t\t", tail, parent)
+  local tail = vim.fs.basename(path)
+  local parent = vim.fs.dirname(path)
+  if parent == "." then
+    return string.format("%s\t\t", tail)
+  end
+  return string.format("%s\t\t%s\t\t", tail, parent)
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "TelescopeResults",
-	callback = function(ctx)
-		vim.api.nvim_buf_call(ctx.buf, function()
-			vim.fn.matchadd("TelescopeParent", "\t\t.*$")
-			vim.api.nvim_set_hl(0, "TelescopeParent", {
-			     link = "Comment",
-			   })
-			vim.fn.matchadd("TelescopeParent2", "▏.*$")
-			vim.api.nvim_set_hl(0, "TelescopeParent2", {
-			     link = "TelescopeMatching",
-			   })
-		end)
-	end,
+  pattern = "TelescopeResults",
+  callback = function(ctx)
+    vim.api.nvim_buf_call(ctx.buf, function()
+      vim.fn.matchadd("TelescopeParent", "\t\t.*$")
+      vim.api.nvim_set_hl(0, "TelescopeParent", {
+        link = "Comment",
+      })
+      vim.fn.matchadd("TelescopeParent2", "▏.*$")
+      vim.api.nvim_set_hl(0, "TelescopeParent2", {
+        link = "TelescopeMatching",
+      })
+    end)
+  end,
 })
 
 -- Set linenumbers in preview pane
@@ -68,7 +68,7 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     local actions = require("telescope.actions")
-    require("telescope").setup {
+    require("telescope").setup({
       pickers = {
         find_files = {
           find_command = find_command,
@@ -106,30 +106,29 @@ return {
           case_mode = "smart_case"
         }
       }
-    }
+    })
 
     local builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<leader>ff", builtin.find_files,      { desc = "Telescope find files" })
-    vim.keymap.set("n", "<leader>fF", builtin.git_files,       { desc = "Telescope find git files" })
-    vim.keymap.set("n", "<leader>fo", builtin.oldfiles,        { desc = "Telescope oldfiles" })
-    vim.keymap.set("n", "<leader>fb", function ()
-      builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
-    end,
+    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+    vim.keymap.set("n", "<leader>fF", builtin.git_files, { desc = "Telescope find git files" })
+    vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Telescope oldfiles" })
+    vim.keymap.set("n", "<leader>fb", function()
+        builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
+      end,
       { desc = "Telescope buffers" }
     )
-    vim.keymap.set("n", "<leader>fh", builtin.help_tags,       { desc = "Telescope help tags" })
+    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
     vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Telescope command history" })
-    vim.keymap.set("n", "<leader>fC", builtin.commands,        { desc = "Telescope commands" })
-    vim.keymap.set("n", "<leader>fd", builtin.git_bcommits,    { desc = "Telescope buffer commits" })
-    vim.keymap.set("n", "<leader>fg", builtin.live_grep,       { desc = "Telescope live grep" })
-    vim.keymap.set("n", "<leader>fw", builtin.grep_string,     { desc = "Telescope find word" })
+    vim.keymap.set("n", "<leader>fC", builtin.commands, { desc = "Telescope commands" })
+    vim.keymap.set("n", "<leader>fd", builtin.git_bcommits, { desc = "Telescope buffer commits" })
+    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Telescope find word" })
     vim.keymap.set("n", "<leader>ft",
       function()
         builtin.grep_string({ word_match = "-w", search = "TODO" })
       end,
       { desc = "Telescope grep TODO" }
     )
-    vim.keymap.set("n", "<leader>fr", builtin.resume,          { desc = "Telescope resume" })
+    vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Telescope resume" })
   end,
 }
-

@@ -1,4 +1,4 @@
--- press n to remove highlights
+-- remove highlights
 vim.keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", {desc="Clear search highlights"})
 
 -- increment and decrement numbers
