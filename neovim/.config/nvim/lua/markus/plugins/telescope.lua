@@ -20,6 +20,7 @@ local default_args = {
 local grep_args = {
   "--glob=!**/package-lock.json",
   "--glob=!**/poetry.lock",
+  "--glob=!**/uv.lock",
 }
 for _, v in ipairs(default_args) do
   table.insert(grep_args, v)
