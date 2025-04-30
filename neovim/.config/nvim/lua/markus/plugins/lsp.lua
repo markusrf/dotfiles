@@ -140,16 +140,16 @@ return {
           --     },
           --   },
           -- }
-          lspconfig.ruff.setup({
-            capabilities = capabilities,
-            -- init_options = {
-            --   settings = {
-            --     -- Docs: https://docs.astral.sh/ruff/editors/settings/#ignore
-            --     lint = {
-            --     }
-            --   }
-            -- }
-          })
+          -- lspconfig.ruff.setup({
+          --   capabilities = capabilities,
+          --   -- init_options = {
+          --   --   settings = {
+          --   --     -- Docs: https://docs.astral.sh/ruff/editors/settings/#ignore
+          --   --     lint = {
+          --   --     }
+          --   --   }
+          --   -- }
+          -- })
         end,
 
         ["basedpyright"] = function()
