@@ -1,10 +1,6 @@
 -- remove highlights
 vim.keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", {desc="Clear search highlights"})
 
--- increment and decrement numbers
-vim.keymap.set("n", "<leader>+", "<C-a>", {desc = "Increment Number"}) -- increment
-vim.keymap.set("n", "<leader>-", "<C-x>", {desc = "Decrement Number"}) -- decrement
-
 
 -- better indenting
 vim.keymap.set("v", "<", "<gv")
