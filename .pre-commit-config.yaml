@@ -2,7 +2,7 @@ default_stages:
   - "pre-commit"
 repos:
   - repo: https://github.com/trufflesecurity/trufflehog
-    rev: v3.87.2
+    rev: v3.88.27
     hooks:
       - id: trufflehog
         entry: trufflehog git file://. --since-commit HEAD --fail
