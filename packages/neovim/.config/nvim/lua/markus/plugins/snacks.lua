@@ -9,17 +9,19 @@ return {
     -- bigfile = { enabled = true },
     dashboard = {
       enabled = true,
-      preset = {
-        header = [[
-                                                                     
-       ████ ██████           █████      ██                     
-      ███████████             █████                             
-      █████████ ███████████████████ ███   ███████████   
-     █████████  ███    █████████████ █████ ██████████████   
-    █████████ ██████████ █████████ █████ █████ ████ █████   
-  ███████████ ███    ███ █████████ █████ █████ ████ █████  
- ██████  █████████████████████ ████ █████ █████ ████ ██████ 
-        ]],
+      sections = {
+        {
+          section = "terminal",
+          cmd =
+          "chafa ~/.config/nvim/dashboard-images/tropic_island_day.jpg --format symbols --symbols vhalf --stretch --size 64x16",
+          height = 16,
+          padding = 1,
+        },
+        {
+          -- pane = 2,
+          { section = "keys",   gap = 1, padding = 1 },
+          { section = "startup" },
+        },
       },
     },
     indent = { enabled = true },
@@ -46,4 +48,3 @@ return {
   --   { "<C-n>",            function() Snacks.explorer() end,           desc = "Explorer" },
   -- }
 }
-
