@@ -1,3 +1,18 @@
+
+local function randomDashboardImage()
+  local dir = "~/.config/nvim/dashboard-images/"
+  local images = {
+    "tropic_island_day.jpg",
+    "tropic_island_night.jpg",
+    "pink-clouds.jpg",
+    "blue-landscape.png",
+    "beach.jpg",
+    "waves.png",
+  }
+  math.randomseed(os.time())
+  return dir .. images[math.random(#images)]
+end
+
 return {
   "folke/snacks.nvim",
   dependencies = {
@@ -12,8 +27,7 @@ return {
       sections = {
         {
           section = "terminal",
-          cmd =
-          "chafa ~/.config/nvim/dashboard-images/tropic_island_day.jpg --format symbols --symbols vhalf --stretch --size 64x16",
+          cmd = string.format("chafa %s --format symbols --symbols vhalf --stretch --size 64x16", randomDashboardImage()),
           height = 16,
           padding = 1,
         },
