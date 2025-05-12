@@ -1,3 +1,21 @@
+local setup_snippets = function()
+  -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua
+  local ls = require("luasnip")
+  local s = ls.snippet
+  local t = ls.text_node
+  local i = ls.insert_node
+
+  vim.keymap.set({ "i", "s" }, "<C-l>", function() ls.jump(1) end, { silent = true })
+  vim.keymap.set({ "i", "s" }, "<C-h>", function() ls.jump(-1) end, { silent = true })
+
+  ls.add_snippets("python", {
+    s("def", {
+      t("def "), i(1, "foo"), t("("), i(2), t(") -> "), i(3, "None"), t({ ":", "" }),
+      t("    "), i(4, "pass")
+    })
+  })
+end
+
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -175,6 +193,8 @@ return {
     })
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+    setup_snippets()
 
     cmp.setup({
       snippet = {
