@@ -19,12 +19,18 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 source ~/code/div/zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
+function zvm_config() {
+  ZVM_VI_HIGHLIGHT_FOREGROUND=black
+  ZVM_VI_HIGHLIGHT_BACKGROUND=magenta
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+}
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions zsh-syntax-highlighting colored-man-pages)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting colored-man-pages zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -34,13 +40,14 @@ source $ZSH/oh-my-zsh.sh
 setopt globdots
 setopt ignoreeof
 
+### NO NEED WITH ZSH-VI-MODE
 # Key binds
 # To find the code: press ctrl+v, then the key - it will print the control key code
 # List of zsh commands can be found here: https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Modifying-Text
-bindkey "\e[1;3D" backward-word      # ⌥←
-bindkey "\e[1;3C" forward-word       # ⌥→
-bindkey "^[[1;9D" beginning-of-line  # cmd+←
-bindkey "^[[1;9C" end-of-line        # cmd+→
+# bindkey "\e[1;3D" backward-word      # ⌥←
+# bindkey "\e[1;3C" forward-word       # ⌥→
+# bindkey "^[[1;9D" beginning-of-line  # cmd+←
+# bindkey "^[[1;9C" end-of-line        # cmd+→
 # User ctrl+U for 'backward-kill-line'
 
 DISABLE_AUTO_TITLE="true"
