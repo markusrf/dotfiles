@@ -16,6 +16,7 @@ opt.shiftwidth = 2     -- Indentation width
 opt.expandtab = true   -- Convert tabs to spaces
 opt.autoindent = true  -- Copy indent of current line to new line
 opt.smartindent = true -- Auto-indent new lines
+opt.inccommand = "split"
 
 -- search settings
 opt.ignorecase = true               -- case insensitive search
@@ -27,3 +28,4 @@ opt.background = "dark"             -- colorschemes can be light or dark
 opt.signcolumn = "yes"              -- show sign column so that text doesnt shift
 opt.backspace = "indent,eol,start"  -- allow backspace on indent, end of line or insert mode start position
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+opt.undofile = true                 -- save undohistory to file

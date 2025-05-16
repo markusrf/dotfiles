@@ -207,7 +207,7 @@ return {
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ["<S-Esc>"] = cmp.mapping.abort(),
+        ["<Esc>"] = cmp.mapping.abort(),
       }),
       sources = cmp.config.sources({
           { name = 'nvim_lsp', priority = 8 },
