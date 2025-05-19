@@ -131,5 +131,6 @@ return {
       { desc = "Telescope grep TODO" }
     )
     vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Telescope resume" })
+    vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
   end,
 }
