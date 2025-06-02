@@ -36,6 +36,8 @@ gui:
     'feat': '#8aadf4'      # blue
     'release': '#c6a0f6'   # mauve
     'chore': '#f0c6c6'     # flamingo
+refresher:
+  fetchInterval: 300
 git:
   paging:
     pager: "delta --paging=never"
