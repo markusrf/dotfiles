@@ -104,7 +104,6 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
-        "pyright",
         "basedpyright",
         "ruff",
         "ts_ls",
@@ -135,41 +134,6 @@ return {
           }
         end,
 
-        -- TODO - configure pyright, formatter, mypy etc
-        ["pyright"] = function()
-          local lspconfig = require("lspconfig")
-          -- lspconfig.pyright.setup {
-          --   capabilities = capabilities,
-          --   on_attach = on_attach,
-          --   -- cmd = { 'pyright-langserver', '--stdio' },
-          --   -- filetypes = { 'python' },
-          --   -- root_dir = function(fname)
-          --   --   return util.root_pattern(unpack(root_files))(fname)
-          --   -- end,
-          --   single_file_support = true,
-          --   settings = {
-          --     python = {
-          --       analysis = {
-          --         -- autoSearchPaths = true,
-          --         -- useLibraryCodeForTypes = true,
-          --         -- diagnosticMode = 'openFilesOnly',
-          --         -- typeCheckingMode = "off", -- off, basic, standard, strict
-          --       },
-          --     },
-          --   },
-          -- }
-          -- lspconfig.ruff.setup({
-          --   capabilities = capabilities,
-          --   -- init_options = {
-          --   --   settings = {
-          --   --     -- Docs: https://docs.astral.sh/ruff/editors/settings/#ignore
-          --   --     lint = {
-          --   --     }
-          --   --   }
-          --   -- }
-          -- })
-        end,
-
         ["basedpyright"] = function()
           local lspconfig = require("lspconfig")
           lspconfig.basedpyright.setup({
@@ -178,7 +142,7 @@ return {
             settings = {
               basedpyright = {
                 analysis = {
-                  typeCheckingMode = "off",
+                  typeCheckingMode = "standard",
                   diagnosticMode = "openFilesOnly",
                   autoSearchPaths = true,
                   useLibraryCodeForTypes = true,
