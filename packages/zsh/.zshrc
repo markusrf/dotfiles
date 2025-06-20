@@ -108,14 +108,17 @@ alias tf='terraform'
 alias lg='lazygit'
 alias lzd='lazydocker'
 
-alias dcu='docker compose up -d'
-alias dcub='docker compose up -d --build'
+alias dcu='docker compose up --watch'
+alias dcub='docker compose up --build --watch'
 alias dcd='docker compose down'
 
+alias gti="git"
 alias gitsha="git log --oneline --color=always --pretty=format:'%C(cyan)%h%Creset %Cgreen%ch%Creset - %s %C(red)<%an>%Creset' | gum filter | cut -w -f1"
 alias gitshac="gitsha | pbcopy"
 alias gitrmb="git branch | cut -c 3- | gum choose --no-limit | xargs git branch -D"
 alias gcatc="gitsha | xargs git cat-file commit"
+
+alias nivm="nvim"
 
 alias printcolors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'"'"'\n'"'"'}; done'
 
