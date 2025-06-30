@@ -1,5 +1,5 @@
 vim.cmd("let g:netrw_liststyle = 3")
-vim.cmd.colorscheme "catppuccin-macchiato"
+vim.cmd.colorscheme "catppuccin"
 -- vim.cmd.colorscheme "rose-pine-moon"
 -- vim.cmd.colorscheme "rose-pine-main"
 -- vim.cmd.colorscheme "flexoki-dark"
