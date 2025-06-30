@@ -16,7 +16,7 @@ local setup_snippets = function()
   })
 end
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -62,13 +62,53 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
   nmap('<leader>gf', '<CMD>Format<CR>', '[F]ormat buffer with LSP')
 
+  -- Fixes (un)comment command for terraform files
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "terraform",
     callback = function()
       vim.bo.commentstring = "# %s"
     end
   })
+
+  -- Enable/disable capabilites
+  if client.name == "ruff" then
+    client.server_capabilities.diagnosticProvider = false
+  elseif client.name == "basedpyright" then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
+
+  -- Autoformat on save
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = bufnr,
+    callback = function ()
+      if client.supports_method("textDocument/formatting") then
+        vim.lsp.buf.format({async = false, id = client.id})
+      end
+    end
+  })
 end
+
+-- Available capabilites
+-- client.server_capabilities.callHierarchyProvider = false
+-- client.server_capabilities.codeActionProvider = false
+-- client.server_capabilities.completionProvider = false
+-- client.server_capabilities.declarationProvider = false
+-- client.server_capabilities.definitionProvider = false
+-- client.server_capabilities.diagnosticProvider = false
+-- client.server_capabilities.documentFormattingProvider = false
+-- client.server_capabilities.documentHighlightProvider = false
+-- client.server_capabilities.documentRangeFormattingProvider = false
+-- client.server_capabilities.documentSymbolProvider = false
+-- client.server_capabilities.foldingRangeProvider = false
+-- client.server_capabilities.hoverProvider = false
+-- client.server_capabilities.implementationProvider = false
+-- client.server_capabilities.referencesProvider = false
+-- client.server_capabilities.renameProvider = false
+-- client.server_capabilities.semanticTokensProvider = false
+-- client.server_capabilities.signatureHelpProvider = false
+-- client.server_capabilities.typeDefinitionProvider = false
+-- client.server_capabilities.workspaceSymbolProvider = false
 
 return {
   "neovim/nvim-lspconfig",
