@@ -71,19 +71,20 @@ local on_attach = function(client, bufnr)
   })
 
   -- Enable/disable capabilites
-  if client.name == "ruff" then
-    client.server_capabilities.diagnosticProvider = false
-  elseif client.name == "basedpyright" then
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-  end
+  -- TODO somethings broken with this :(
+  -- if client.name == "ruff" then
+  --   client.server_capabilities.diagnosticProvider = false
+  -- elseif client.name == "basedpyright" then
+  --   client.server_capabilities.documentFormattingProvider = false
+  --   client.server_capabilities.documentRangeFormattingProvider = false
+  -- end
 
   -- Autoformat on save
   vim.api.nvim_create_autocmd("BufWritePre", {
     buffer = bufnr,
-    callback = function ()
+    callback = function()
       if client.supports_method("textDocument/formatting") then
-        vim.lsp.buf.format({async = false, id = client.id})
+        vim.lsp.buf.format({ async = false, id = client.id })
       end
     end
   })
