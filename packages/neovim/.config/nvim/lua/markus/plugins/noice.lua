@@ -34,6 +34,8 @@ return {
       --     opts = { skip = true },
       --   }
       -- },
+      vim.keymap.set("n", "<leader>nc", function () require("noice").cmd("dismiss") end, { desc = "Noice dismiss" }),
+      vim.keymap.set("n", "<leader>nl", function () require("noice").cmd("last") end, { desc = "Noice last" }),
     })
   end,
   dependencies = {

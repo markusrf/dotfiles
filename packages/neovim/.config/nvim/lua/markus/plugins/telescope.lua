@@ -105,7 +105,7 @@ return {
           override_generic_sorter = true,
           override_file_sorter = true,
           case_mode = "smart_case"
-        }
+        },
       }
     })
 
@@ -132,5 +132,6 @@ return {
     )
     vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Telescope resume" })
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
+    vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", { desc = "Noice messages" })
   end,
 }
