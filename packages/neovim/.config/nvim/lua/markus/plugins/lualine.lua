@@ -1,3 +1,12 @@
+-- Used to show "recording" macro messages
+local function macro_recording()
+  local mode = require("noice").api.status.mode.get()
+  if string.find(mode, "recording") then
+    return mode
+  end
+  return ""
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" }, -- Optional for icons
@@ -25,9 +34,19 @@ return {
         },
         lualine_c = {
           { "filename", path = 4 },
-          "searchcount"
+          "searchcount",
+          {
+            macro_recording,
+            cond = require("noice").api.status.mode.has,
+          },
         },
-        lualine_x = { "encoding", "filetype" },
+        lualine_x = {
+          {
+            require("noice").api.status.command.get,
+            cond = require("noice").api.status.command.has,
+          },
+          "filetype",
+        },
         lualine_y = { "progress" },
         lualine_z = {
           { "location", separator = { left = "", right = "" } },
