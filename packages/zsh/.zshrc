@@ -98,7 +98,7 @@ alias ll='ls -lAhG'
 alias mkdir='mkdir -p'
 alias path='echo $PATH | tr -s ":" "\n"'
 
-alias bb-check='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle check --no-upgrade --file=-'
+alias bb-check='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle check --no-upgrade -v --file=-'
 alias bb-install='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle install --no-upgrade --file=-'
 alias bb-upgrade='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle upgrade --file=-'
 alias bb-cleanup='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle cleanup --file=-'
