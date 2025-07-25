@@ -137,9 +137,16 @@ return {
     local cmp_lsp = require("cmp_nvim_lsp")
     local capabilities = vim.tbl_deep_extend(
       "force",
-      {},
       vim.lsp.protocol.make_client_capabilities(),
-      cmp_lsp.default_capabilities())
+      cmp_lsp.default_capabilities(),
+      {
+        offsetEncoding = { "utf-16" },
+        general = {
+          positionEncodings = { "utf-16" },
+        },
+      }
+    )
+    capabilities.offsetEncoding = { "utf-16" }
 
     require("fidget").setup({})
     require("mason").setup()
