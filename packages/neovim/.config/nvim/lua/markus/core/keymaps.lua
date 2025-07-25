@@ -25,6 +25,12 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window 
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
+-- Diagnostics
+vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  { desc = "Jump to next diagnostic" })
+vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end,
+  { desc = "Jump to previous diagnostic" })
+
 -- Save All
 vim.keymap.set("n", "<leader>wa", "<cmd>wa!<CR>", { desc = "Save all" })
 -- Quit all
