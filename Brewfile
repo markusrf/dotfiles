@@ -1,6 +1,5 @@
 tap "caarlos0/tap"
 tap "jesseduffield/lazydocker"
-tap "jesseduffield/lazygit"
 tap "trufflesecurity/trufflehog"
 
 brew "asdf"

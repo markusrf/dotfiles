@@ -1,4 +1,3 @@
-
 local function randomDashboardImage()
   local dir = "~/.config/nvim/dashboard-images/"
   local images = {
