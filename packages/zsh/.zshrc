@@ -17,7 +17,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-source ~/code/div/zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
+# Must be sourced before loading the zsh-syntax-highlighting plugin
+# Files coming from https://github.com/catppuccin/zsh-syntax-highlighting
+source ~/.zsh/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
 function zvm_config() {
   ZVM_VI_HIGHLIGHT_FOREGROUND=black
