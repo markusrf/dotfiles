@@ -29,7 +29,7 @@ return {
       sections = {
         {
           section = "terminal",
-          cmd = string.format("chafa %s --format symbols --symbols vhalf --stretch --size 64x16", randomDashboardImage()),
+          cmd = string.format("chafa %s --format symbols --symbols vhalf --stretch --size 60x16", randomDashboardImage()),
           height = 16,
           padding = 1,
         },
