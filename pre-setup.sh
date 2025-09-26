@@ -3,12 +3,14 @@ set -euo pipefail
 
 # install brew
 if ! command -v brew >/dev/null 2>&1; then
+  echo "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   brew install stow
 fi
 
 # install oh-my-zsh
-if ! command -v omz >/dev/null 2>&1; then
+if [[ -z "$ZSH" ]]; then
+  echo "Installing oh my zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
@@ -16,11 +18,25 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 mkdir -p ~/.oh-my-zsh/completions
 
 # install zsh plugins
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode.git $ZSH_CUSTOM/plugins/zsh-vi-mode
+if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
+  echo "Installing p10k"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+fi
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
+  echo "Installing zsh-autosuggestions"
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+fi
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
+  echo "Installing zsh-syntax-highlighting"
+  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+fi
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]]; then
+  echo "Installing zsh-vi-mode"
+  git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode.git $ZSH_CUSTOM/plugins/zsh-vi-mode
+fi
 
 # stow packages
-rm ~/.zshrc  # to avoid collision
+echo "Stowing packages"
+rm -f **/.DS_Store
+rm -f ~/.config/**/.DS_Store
 (cd packages; stow -t ~ -R *)
