@@ -8,19 +8,19 @@ local function my_on_attach(bufnr)
   end
 
   -- function for left to assign to keybindings
-  local lefty = function ()
+  local lefty = function()
     local node_at_cursor = api.tree.get_node_under_cursor()
     -- if it's a node and it's open, close
     if node_at_cursor.nodes and node_at_cursor.open then
       api.node.open.edit()
-    -- else left jumps up to parent
+      -- else left jumps up to parent
     else
       api.node.navigate.parent()
     end
   end
 
   -- function for right to assign to keybindings
-  local righty = function ()
+  local righty = function()
     local node_at_cursor = api.tree.get_node_under_cursor()
     -- if it's a closed node, open it
     if node_at_cursor.nodes and not node_at_cursor.open then
@@ -29,11 +29,11 @@ local function my_on_attach(bufnr)
   end
 
   api.config.mappings.default_on_attach(bufnr)
-  vim.keymap.set('n', '?', api.tree.toggle_help,  opts('Help'))
-  vim.keymap.set("n", "h", lefty , opts("Close node") )
-  vim.keymap.set("n", "<Left>", lefty , opts("Close node") )
-  vim.keymap.set("n", "<Right>", righty , opts("Open node") )
-  vim.keymap.set("n", "l", righty , opts("Open node") )
+  vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+  vim.keymap.set("n", "h", lefty, opts("Close node"))
+  vim.keymap.set("n", "<Left>", lefty, opts("Close node"))
+  vim.keymap.set("n", "<Right>", righty, opts("Open node"))
+  vim.keymap.set("n", "l", righty, opts("Open node"))
 end
 
 
@@ -84,6 +84,9 @@ return {
       },
       on_attach = my_on_attach,
     }
+
+    vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer" })
+    vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explore" })
+    vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
   end,
 }
-

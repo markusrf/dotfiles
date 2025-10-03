@@ -36,10 +36,5 @@ vim.keymap.set("n", "<leader>wa", "<cmd>wa!<CR>", { desc = "Save all" })
 -- Quit all
 vim.keymap.set("n", "<leader>qa", "<cmd>qa<CR>", { desc = "Quit all" })
 
--- nvim.tree
-vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer" })
-vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explore" })
-vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
-
 -- Substitude whole word under cursor, case sensitive
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace text" })
