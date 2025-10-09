@@ -32,7 +32,7 @@ function zvm_config() {
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions zsh-syntax-highlighting colored-man-pages zsh-vi-mode)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting colored-man-pages zsh-vi-mode fzf-tab)
 
 source $ZSH/oh-my-zsh.sh
 

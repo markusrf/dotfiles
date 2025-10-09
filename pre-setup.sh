@@ -34,6 +34,10 @@ if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]]; then
   echo "Installing zsh-vi-mode"
   git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode.git $ZSH_CUSTOM/plugins/zsh-vi-mode
 fi
+if [[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ]]; then
+  echo "Installing fzf-tab"
+  git clone --depth=1 https://github.com/Aloxaf/fzf-tab.git $ZSH_CUSTOM/plugins/fzf-tab
+fi
 
 # stow packages
 echo "Stowing packages"
