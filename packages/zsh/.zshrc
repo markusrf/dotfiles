@@ -114,8 +114,8 @@ alias tf='terraform'
 alias lg='lazygit'
 alias lzd='lazydocker'
 
-alias dcu='docker compose up --watch --remove-orphans'
-alias dcub='docker compose up --build --watch --remove-orphans'
+alias dcu='docker compose up --remove-orphans -d'
+alias dcub='docker compose up --build --remove-orphans -d'
 alias dcd='docker compose down'
 
 alias gti="git"
