@@ -38,3 +38,11 @@ vim.keymap.set("n", "<leader>qa", "<cmd>qa<CR>", { desc = "Quit all" })
 
 -- Substitude whole word under cursor, case sensitive
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace text" })
+
+
+vim.keymap.set("n", "<leader><leader>fml", function()
+  require("cellular-automaton").start_animation("make_it_rain")
+end, { desc = "Make it rain" })
+vim.keymap.set("n", "<leader><leader>ca", function()
+  require("cellular-automaton").start_animation("game_of_life")
+end, { desc = "Game of life" })
