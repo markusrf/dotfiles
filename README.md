@@ -1,12 +1,13 @@
 # dotfiles
 
-Create symlinks using stow
+To get started, run the install script:
+```sh
+# Installs homebrew, brewfile, oh-my-zsh, zsh plugins and stows all packages
+./install.sh
+```
+
+To stow individual package:
 ```sh
 cd packages
 stow -t ~ packagename
 ```
-
-## TODO
-- create script for installing asdf stuff on new computer
-- create init script - installing brew and stow
-- update readme with steps

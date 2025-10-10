@@ -5,17 +5,26 @@ set -euo pipefail
 if ! command -v brew >/dev/null 2>&1; then
   echo "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew install stow
+
+  brew analytics off
+
+  if ! grep -q "$(brew --prefix)/bin/bash" /etc/shells; then
+    echo "Adding brew installed bash to /etc/shells"
+    sudo sh -c "echo $(brew --prefix)/bin/bash >> /etc/shells"
+  fi
+
+  brew bundle install --no-upgrade
 fi
+
 
 # install oh-my-zsh
 if [[ -z "$ZSH" ]]; then
   echo "Installing oh my zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  mkdir -p ~/.oh-my-zsh/completions
 fi
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
-mkdir -p ~/.oh-my-zsh/completions
 
 # install zsh plugins
 if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
@@ -39,8 +48,20 @@ if [[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ]]; then
   git clone --depth=1 https://github.com/Aloxaf/fzf-tab.git $ZSH_CUSTOM/plugins/fzf-tab
 fi
 
+
 # stow packages
-echo "Stowing packages"
+echo "Restowing packages"
 rm -f **/.DS_Store
 rm -f ~/.config/**/.DS_Store
 (cd packages; stow -t ~ -R *)
+
+
+if ! gh extension list | grep -q "dlvhdr/gh-dash"; then
+  echo "Installing gh extension gh-dash"
+  gh extension install dlvhdr/gh-dash
+fi
+
+
+# to make bat know about extra themes
+echo "Rebuilding bat cache"
+bat cache --build
