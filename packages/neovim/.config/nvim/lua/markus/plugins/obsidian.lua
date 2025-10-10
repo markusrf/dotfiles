@@ -37,6 +37,8 @@ return {
         },
       }
     )
+    -- TODO: v3.14 supports using lsp keybinds instead of these
+    -- but the on_attach function in lsp.lua is not run when obsidian_ls starts
     create_keymap("n", "<leader>ot", "<cmd>Obsidian tags<CR>", "Obsidian: Tags")
     create_keymap("n", "<leader>ob", "<cmd>Obsidian backlinks<CR>", "Obsidian: Backlinks")
     create_keymap("n", "<leader>oh", "<cmd>Obsidian toc<CR>", "Obsidian: Headings")
