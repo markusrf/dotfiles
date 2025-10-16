@@ -59,8 +59,40 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Based on https://github.com/nvim-telescope/telescope.nvim/issues/609#issuecomment-860963901
+local function setup_git_bcommits()
+  local previewers = require('telescope.previewers')
+  local builtin = require('telescope.builtin')
+
+  local delta = previewers.new_termopen_previewer {
+    get_command = function(entry)
+      return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--',
+        entry.current_file }
+    end
+  }
+
+  local git_bcommits_func = function(opts)
+    opts = opts or {}
+    opts.previewer = {
+      delta,
+      previewers.git_commit_message.new(opts),
+      previewers.git_commit_diff_as_was.new(opts),
+    }
+
+    -- The trailing newline %n is added as workaround for the following telescope issue:
+    -- https://github.com/nvim-telescope/telescope.nvim/issues/2517
+    opts.git_command = { "git", "log", "--pretty=format:%C(auto)%h %cs -%d %s <%an>%n", "--abbrev-commit" }
+
+    builtin.git_bcommits(opts)
+  end
+
+  return git_bcommits_func
+end
+
+
 -- Set linenumbers in preview pane
 vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
+
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -121,7 +153,7 @@ return {
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
     vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Telescope command history" })
     vim.keymap.set("n", "<leader>fC", builtin.commands, { desc = "Telescope commands" })
-    vim.keymap.set("n", "<leader>fd", builtin.git_bcommits, { desc = "Telescope buffer commits" })
+    vim.keymap.set("n", "<leader>fd", setup_git_bcommits(), { desc = "Telescope buffer commits" })
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
     vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Telescope find word" })
     vim.keymap.set("n", "<leader>ft",
