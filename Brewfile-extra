@@ -1,5 +1,4 @@
 tap "hashicorp/tap"
-tap "snyk/tap"
 
 brew "azure-cli"
 brew "dive"
@@ -9,7 +8,6 @@ brew "postgresql@14"
 brew "terraform-docs"
 brew "tflint"
 brew "tfsec"
-brew "snyk/tap/snyk"
 
 cask "burp-suite"
 cask "docker"
