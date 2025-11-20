@@ -156,6 +156,11 @@ return {
     vim.keymap.set("n", "<leader>fd", setup_git_bcommits(), { desc = "Telescope buffer commits" })
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
     vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Telescope find word" })
+    vim.keymap.set("n", "<leader>fW",
+      function()
+        builtin.grep_string({ word_match = "-w", additional_args = { "--case-sensitive" } })
+      end,
+      { desc = "Telescope find exact word" })
     vim.keymap.set("n", "<leader>ft",
       function()
         builtin.grep_string({ word_match = "-w", search = "TODO" })
@@ -165,5 +170,6 @@ return {
     vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Telescope resume" })
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
     vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", { desc = "Noice messages" })
+    vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "Telescope spell suggestions" })
   end,
 }
