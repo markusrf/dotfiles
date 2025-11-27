@@ -3,7 +3,7 @@ set -euo pipefail
 
 # install brew
 if ! command -v brew >/dev/null 2>&1; then
-  echo "\nInstalling homebrew"
+  echo "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   BREW="$(brew --prefix 2>/dev/null || echo '/opt/homebrew')/bin/brew"
   if [[ ! -e "$BREW" ]]; then
@@ -26,7 +26,7 @@ fi
 
 # install oh-my-zsh
 if [[ -z "${ZSH+x}" ]]; then
-  echo "\nInstalling oh my zsh"
+  echo "Installing oh my zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   rm ~/.zshrc  # remove the default .zshrc
   mkdir -p ~/.oh-my-zsh/completions
@@ -36,34 +36,34 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
 # install zsh plugins
 if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
-  echo "\nInstalling p10k"
+  echo "Installing p10k"
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 fi
 if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
-  echo "\nInstalling zsh-autosuggestions"
+  echo "Installing zsh-autosuggestions"
   git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 fi
 if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
-  echo "\nInstalling zsh-syntax-highlighting"
+  echo "Installing zsh-syntax-highlighting"
   git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 fi
 if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]]; then
-  echo "\nInstalling zsh-vi-mode"
+  echo "Installing zsh-vi-mode"
   git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode.git $ZSH_CUSTOM/plugins/zsh-vi-mode
 fi
 if [[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ]]; then
-  echo "\nInstalling fzf-tab"
+  echo "Installing fzf-tab"
   git clone --depth=1 https://github.com/Aloxaf/fzf-tab.git $ZSH_CUSTOM/plugins/fzf-tab
 fi
 
 
 # stow packages
-echo "\nRestowing packages"
+echo "Restowing packages"
 rm -f **/.DS_Store
 rm -f ~/.config/**/.DS_Store
 (cd packages; stow -t ~ -R *)
 
 
 # to make bat know about extra themes
-echo "\nRebuilding bat cache"
+echo "Rebuilding bat cache"
 bat cache --build
