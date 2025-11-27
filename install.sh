@@ -6,6 +6,12 @@ if ! command -v brew >/dev/null 2>&1; then
   echo "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   BREW="$(brew --prefix 2>/dev/null || echo '/opt/homebrew')/bin/brew"
+  if [[ ! -e "$BREW" ]]; then
+    echo "Could not find brew executable at $BREW"
+    echo "Consider uninstalling using the following command:"
+    echo "/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)'"
+    exit 1
+  fi
 
   $BREW analytics off
 
