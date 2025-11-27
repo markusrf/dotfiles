@@ -25,7 +25,7 @@ fi
 
 
 # install oh-my-zsh
-if [[ -z "$ZSH" ]]; then
+if [[ -z "${ZSH+x}" ]]; then
   echo "Installing oh my zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   mkdir -p ~/.oh-my-zsh/completions
