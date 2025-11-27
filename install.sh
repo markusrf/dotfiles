@@ -5,15 +5,16 @@ set -euo pipefail
 if ! command -v brew >/dev/null 2>&1; then
   echo "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  BREW="$(brew --prefix 2>/dev/null || echo '/opt/homebrew')/bin/brew"
 
-  brew analytics off
+  $BREW analytics off
 
-  if ! grep -q "$(brew --prefix)/bin/bash" /etc/shells; then
+  if ! grep -q "$($BREW --prefix)/bin/bash" /etc/shells; then
     echo "Adding brew installed bash to /etc/shells"
-    sudo sh -c "echo $(brew --prefix)/bin/bash >> /etc/shells"
+    sudo sh -c "echo $($BREW --prefix)/bin/bash >> /etc/shells"
   fi
 
-  brew bundle install --no-upgrade
+  $BREW bundle install --no-upgrade
 fi
 
 
