@@ -106,7 +106,7 @@ sudo chflags nohidden /Volumes
 ### Dock
 
 
-# Set the icon size of Dock items to 36 pixels
+# Set the icon size of Dock items
 defaults write com.apple.dock tilesize -int 40
 
 # Speed up Mission Control animations
@@ -128,6 +128,9 @@ defaults write com.apple.dock showhidden -bool true
 
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
+
+# Dock orientation
+defaults write com.apple.dock orientation -string "left"
 
 # Disable double click action
 defaults write NSGlobalDomain AppleActionOnDoubleClick -string "None"
