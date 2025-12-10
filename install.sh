@@ -67,3 +67,10 @@ rm -f ~/.config/**/.DS_Store
 # to make bat know about extra themes
 echo "Rebuilding bat cache"
 bat cache --build
+
+
+# asdf
+asdf plugin add python
+asdf plugin add uv
+asdf plugin add nodejs
+asdf install
