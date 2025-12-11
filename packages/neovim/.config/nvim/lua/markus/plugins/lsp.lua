@@ -196,6 +196,16 @@ return {
             }
           })
         end,
+
+        ["terraformls"] = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.terraformls.setup({
+            filetypes = { "terraform" },
+            capabilities = capabilities,
+            on_attach = on_attach,
+            cmd = { "terraform-ls", "serve", "-log-file", vim.fs.dirname(require("vim.lsp.log").get_filename()) .. "/terraform-ls.log" },
+          })
+        end,
       }
     })
 
