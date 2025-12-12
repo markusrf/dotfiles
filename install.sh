@@ -73,5 +73,5 @@ bat cache --build
 asdf plugin add python
 asdf plugin add uv
 asdf plugin add nodejs
-asdf plugin add pre-commuit
+asdf plugin add pre-commit
 asdf install
