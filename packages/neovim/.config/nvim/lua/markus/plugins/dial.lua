@@ -14,6 +14,7 @@ end
 return {
   "monaqa/dial.nvim",
   recommended = true,
+  event = "BufEnter",
   desc = "Increment and decrement numbers, dates, and more",
   -- stylua: ignore
   keys = {

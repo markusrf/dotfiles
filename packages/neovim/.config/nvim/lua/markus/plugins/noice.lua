@@ -1,5 +1,6 @@
 return {
   "folke/noice.nvim",
+  event = "VeryLazy",
   config = function()
     require("noice").setup({
       lsp = {
@@ -16,7 +17,7 @@ return {
         -- command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
         -- inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        lsp_doc_border = false,       -- add a border to hover docs and signature help
       },
       -- add any options here
       -- routes = {
@@ -34,8 +35,8 @@ return {
       --     opts = { skip = true },
       --   }
       -- },
-      vim.keymap.set("n", "<leader>nc", function () require("noice").cmd("dismiss") end, { desc = "Noice dismiss" }),
-      vim.keymap.set("n", "<leader>nl", function () require("noice").cmd("last") end, { desc = "Noice last" }),
+      vim.keymap.set("n", "<leader>nc", function() require("noice").cmd("dismiss") end, { desc = "Noice dismiss" }),
+      vim.keymap.set("n", "<leader>nl", function() require("noice").cmd("last") end, { desc = "Noice last" }),
     })
   end,
   dependencies = {

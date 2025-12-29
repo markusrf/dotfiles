@@ -1,5 +1,8 @@
 return {
   "nvim-lua/plenary.nvim", -- lua functions
 
-  "eandrju/cellular-automaton.nvim",
+  {
+    "eandrju/cellular-automaton.nvim",
+    event = "VeryLazy",
+  }
 }

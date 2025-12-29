@@ -121,6 +121,7 @@ return {
     "saadparwaiz1/cmp_luasnip",
     "j-hui/fidget.nvim",
   },
+  event = "VeryLazy",
 
   config = function()
     require("conform").setup({

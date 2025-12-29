@@ -169,7 +169,9 @@ return {
     )
     vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Telescope resume" })
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
-    vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", { desc = "Noice messages" })
     vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "Telescope spell suggestions" })
+
+    require("telescope").load_extension("noice")
+    vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", { desc = "Noice messages" })
   end,
 }

@@ -1,5 +1,6 @@
 return {
   "mbbill/undotree",
+  event = "VeryLazy",
 
   config = function()
     vim.g.undotree_SetFocusWhenToggle = 1

@@ -2,7 +2,8 @@ return {
   {
     "echasnovski/mini.pairs",
     version = "*",
-    config = function ()
+    event = "InsertEnter",
+    config = function()
       require("mini.pairs").setup({
       })
     end,
@@ -11,9 +12,9 @@ return {
   {
     "echasnovski/mini.splitjoin",
     version = '*',
-    config = function ()
+    event = "BufEnter",
+    config = function()
       require("mini.splitjoin").setup({})
     end
   },
 }
-
