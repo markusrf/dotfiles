@@ -2,7 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
-    require("nvim-treesitter.configs").setup({
+    require("nvim-treesitter").setup({
       -- A list of parser names, or "all"
       ensure_installed = {
         "vimdoc",
@@ -22,6 +22,7 @@ return {
         "sql",
         "toml",
         "vhs",
+        "zsh",
       },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -72,7 +73,5 @@ return {
         },
       },
     })
-
-    local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
   end
 }
