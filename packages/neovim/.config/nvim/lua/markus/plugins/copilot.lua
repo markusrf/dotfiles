@@ -16,7 +16,12 @@ return {
           prev = "<C-S-k>",
           dismiss = "<C-Esc>",
         },
-      }
+      },
+      server_opts_overrides = {
+        settings = {
+          telemetry = { telemetryLevel = "off" },
+        },
+      },
     })
     vim.keymap.set("n", "<leader>ct", function()
         require("copilot.suggestion").toggle_auto_trigger()

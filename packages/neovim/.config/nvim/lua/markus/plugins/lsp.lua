@@ -141,7 +141,6 @@ return {
         },
       }
     )
-    capabilities.offsetEncoding = { "utf-16" }
 
     require("fidget").setup({})
     require("mason").setup()
@@ -154,62 +153,58 @@ return {
         "terraformls",
         "bashls",
       },
-      handlers = {
-        function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-          }
-        end,
-
-        ["lua_ls"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.lua_ls.setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = {
-              Lua = {
-                runtime = { version = "LuaJIT" },
-                diagnostics = {
-                  globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                }
-              }
-            }
-          }
-        end,
-
-        ["basedpyright"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.basedpyright.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = {
-              basedpyright = {
-                analysis = {
-                  typeCheckingMode = "standard",
-                  diagnosticMode = "openFilesOnly",
-                  autoSearchPaths = true,
-                  useLibraryCodeForTypes = true,
-                  extraPaths = {
-                  },
-                }
-              }
-            }
-          })
-        end,
-
-        ["terraformls"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.terraformls.setup({
-            filetypes = { "terraform" },
-            capabilities = capabilities,
-            on_attach = on_attach,
-            -- cmd = { "terraform-ls", "serve", "-log-file", vim.fs.dirname(require("vim.lsp.log").get_filename()) .. "/terraform-ls.log" },
-            cmd = { "terraform-ls", "serve", "-log-file", "/dev/null" },
-          })
-        end,
-      }
     })
+
+    vim.lsp.config("*",
+      {
+        capabilities = capabilities,
+        on_attach = on_attach,
+      }
+    )
+
+    vim.lsp.config.lua_ls = {
+      settings = {
+        Lua = {
+          runtime = { version = "LuaJIT" },
+          diagnostics = {
+            globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          telemetry = { enable = false },
+        }
+      }
+    }
+
+    vim.lsp.config.basedpyright = {
+      settings = {
+        basedpyright = {
+          analysis = {
+            typeCheckingMode = "standard",
+            diagnosticMode = "openFilesOnly",
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            extraPaths = {
+            },
+          }
+        }
+      }
+    }
+
+    vim.lsp.config.terraformls = {
+      filetypes = { "terraform" },
+      -- cmd = { "terraform-ls", "serve", "-log-file", vim.fs.dirname(require("vim.lsp.log").get_filename()) .. "/terraform-ls.log" },
+      cmd = { "terraform-ls", "serve", "-log-file", "/dev/null" },
+    }
+
+    vim.lsp.config.ruff = {
+      init_options = {
+        settings = {
+          logLevel = "warn",
+        },
+      },
+    }
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -265,7 +260,7 @@ return {
         focusable = false,
         style = "minimal",
         border = "rounded",
-        source = "always",
+        source = true,
         header = "",
         prefix = "",
       },
