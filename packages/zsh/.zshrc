@@ -66,6 +66,8 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+bindkey -v " " magic-space
 
 . $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
@@ -98,6 +100,10 @@ fi
 ###########
 # ALIASES #
 ###########
+
+alias -g NE='2>/dev/null'
+alias -g DN='>/dev/null'
+alias -g NUL='>/dev/null 2>&1'
 
 # alias ls='colorls --sd'
 alias ll='ls -lAhG'
