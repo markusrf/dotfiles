@@ -19,6 +19,17 @@ return {
       },
       float = {
         padding = 4,
+        border = "rounded",
+        get_win_title = function(winid)
+          local cwd = vim.fn.getcwd()
+          local buf = vim.api.nvim_win_get_buf(winid)
+          local oil_file_path = vim.api.nvim_buf_get_name(buf)
+          local file_path = string.gsub(oil_file_path, "oil://", "")
+          if string.find(file_path, cwd, 1, true) then
+            file_path = file_path:sub(#cwd + 1)
+          end
+          return ' ' .. file_path .. ' '
+        end,
       },
       keymaps = {
         ["gd"] = {
