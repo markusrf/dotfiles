@@ -106,6 +106,26 @@ end
 -- client.server_capabilities.typeDefinitionProvider = false
 -- client.server_capabilities.workspaceSymbolProvider = false
 
+local function filter(func, list)
+  local result = {}
+  for _, value in ipairs(list) do
+    if func(value) then
+      result.insert(value)
+    end
+  end
+  return result
+end
+
+-- Directory prefix of all package directories
+local package_prefix = vim.fn.expand((vim.env.XDG_DATA_HOME or '~/.local/share') .. '/nvim/site/')
+
+local function is_package_path(path)
+  if package_prefix ~= string.sub(path, 1, #package_prefix) then
+    return false
+  end
+  return vim.fn.isdirectory(path .. '/lua') ~= 0
+end
+
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -170,7 +190,8 @@ return {
             globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
           },
           workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
+            -- See https://www.reddit.com/r/neovim/comments/x3bd4i/how_can_i_get_lsp_to_recognize_builtin_neovim_api/
+            library = filter(is_package_path, vim.api.nvim_get_runtime_file("", true))
           },
           telemetry = { enable = false },
         }
