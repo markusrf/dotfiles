@@ -98,11 +98,17 @@ return {
   "nvim-telescope/telescope.nvim",
   tag = "v0.2.0",
   -- commit = "814f102cd1da3dc78c7d2f20f2ef3ed3cdf0e6e4",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope-live-grep-args.nvim",
+  },
   event = "VeryLazy",
   config = function()
+    local telescope = require("telescope")
     local actions = require("telescope.actions")
-    require("telescope").setup({
+    local lga_actions = require("telescope-live-grep-args.actions")
+
+    telescope.setup({
       pickers = {
         find_files = {
           find_command = find_command,
@@ -122,6 +128,11 @@ return {
         },
         live_grep = {
           additional_args = grep_args,
+          mappings = {
+            i = {
+              ["<C-f>"] = actions.to_fuzzy_refine,
+            },
+          }
         },
         lsp_references = {
           trim_text = true,
@@ -139,8 +150,21 @@ return {
           override_file_sorter = true,
           case_mode = "smart_case"
         },
+        live_grep_args = {
+          additional_args = grep_args,
+          mappings = {
+            i = {
+              ["<C-k>"] = lga_actions.quote_prompt(),
+              ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              ["<C-f>"] = actions.to_fuzzy_refine,
+            },
+          },
+        },
       }
     })
+
+    telescope.load_extension("noice")
+    telescope.load_extension("live_grep_args")
 
     local builtin = require("telescope.builtin")
     vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
@@ -155,7 +179,8 @@ return {
     vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Telescope command history" })
     vim.keymap.set("n", "<leader>fC", builtin.commands, { desc = "Telescope commands" })
     vim.keymap.set("n", "<leader>fd", setup_git_bcommits(), { desc = "Telescope buffer commits" })
-    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+    vim.keymap.set("n", "<leader>fg", telescope.extensions.live_grep_args.live_grep_args,
+      { desc = "Telescope live grep" })
     vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Telescope find word" })
     vim.keymap.set("n", "<leader>fW",
       function()
@@ -172,7 +197,6 @@ return {
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
     vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "Telescope spell suggestions" })
 
-    require("telescope").load_extension("noice")
     vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", { desc = "Noice messages" })
   end,
 }
