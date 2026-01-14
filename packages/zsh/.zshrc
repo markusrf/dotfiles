@@ -116,9 +116,9 @@ alias bb-upgrade='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle upgr
 alias bb-cleanup='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle cleanup --file=-'
 
 alias tf='terraform'
-
 alias lg='lazygit'
 alias lzd='lazydocker'
+alias icat='kitten icat'
 
 alias dcu='docker compose up --remove-orphans -d'
 alias dcub='docker compose up --build --remove-orphans -d'
@@ -160,17 +160,38 @@ function obsidian-code() {
 
 # Mac setup for pomo
 function work() {
-    timer ${1:-50}m --format 24h && terminal-notifier \
-        -message 'Take a break ☕️🤩' \
-        -title 'Work timer is up!' \
-        -sound Crystal
+  timer ${1:-50}m --format 24h && terminal-notifier \
+    -message Pomodoro \
+    -title 'Work Timer is up! Take a Break ☕️🤩' \
+    -sound Crystal
 }
 
 function rest() {
-    timer ${1:-10}m --format 24h && terminal-notifier \
-        -message 'Get back to work 🐸' \
-        -title 'Break is over!' \
-        -sound Crystal
+  timer ${1:-10}m --format 24h && terminal-notifier \
+    -message Pomodoro \
+    -title 'Break is over! Get back to work 🐸' \
+    -sound Crystal
+}
+
+function pom() {
+  SPLIT=$(gum choose "25/5" "50/10" "all done" --header "Choose a pomodoro split.")
+
+  case "$SPLIT" in
+    "25/5")
+      WORK=25
+      BREAK=5
+      ;;
+    "50/10")
+      WORK=50
+      BREAK=10
+      ;;
+    "all done" | *)
+      return
+      ;;
+  esac
+
+  work $WORK
+  gum confirm "Ready for a break?" && rest $BREAK || pom
 }
 
 function gremote() {
@@ -189,4 +210,3 @@ function mvi() {
   [[ -z "$TARGET" ]] && return
   mv $(echo $FILES) "$TARGET"
 }
-
