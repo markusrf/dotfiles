@@ -153,11 +153,6 @@ function obsidian() {
     eval "$COMMAND"
 }
 
-# open obsidian vault in VS Code
-function obsidian-code() {
-    code ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/vault
-}
-
 # Mac setup for pomo
 function work() {
   timer ${1:-50}m --format 24h && terminal-notifier \
