@@ -48,6 +48,8 @@ git:
   # 'cs' - short date (YYYY-MM-DD)
   # 'ch' - human readable
   branchLogCmd: "git log --graph --color=always --pretty=format:'%C(cyan)%h%Creset %Cgreen%ch%Creset -%C(yellow)%d%Creset %s %C(red)<%an>%Creset' --abbrev-commit {{branchName}} --"
+  merging:
+    autoForwardBranches: "none"
 notARepository: skip
 customCommands:
   - key: 'W'
