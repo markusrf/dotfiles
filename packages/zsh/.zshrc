@@ -81,9 +81,6 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#494d64 \
 --multi"
 
-# fzf-git
-source ~/.zsh_scripts/fzf-git.sh
-
 eval "$(zoxide init zsh --cmd cd)"
 
 
