@@ -196,6 +196,7 @@ return {
     vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Telescope resume" })
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
     vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "Telescope spell suggestions" })
+    vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope keymaps" })
 
     vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", { desc = "Noice messages" })
   end,
