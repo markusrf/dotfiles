@@ -24,6 +24,9 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Dark mode
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
+# Dark icon appearance
+defaults write NSGlobalDomain AppleIconAppearanceTheme -string "RegularDark"
+
 
 ### Trackpad, mouse, keyboard, bluetooth etc
 
