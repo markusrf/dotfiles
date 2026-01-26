@@ -1546,7 +1546,7 @@
       '*'         OTHER)
 
   # Azure account name color.
-  typeset -g POWERLEVEL9K_AZURE_OTHER_FOREGROUND=7
+  typeset -g POWERLEVEL9K_AZURE_OTHER_FOREGROUND=0
   typeset -g POWERLEVEL9K_AZURE_OTHER_BACKGROUND=4
   # Custom icon.
   # typeset -g POWERLEVEL9K_AZURE_OTHER_VISUAL_IDENTIFIER_EXPANSION='⭐'
