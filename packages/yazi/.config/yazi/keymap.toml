@@ -1,0 +1,10 @@
+[[mgr.prepend_keymap]]
+on  = [ "g", "d" ]
+run = "linemode permissions"
+desc = "View file permissions"
+
+[[mgr.prepend_keymap]]
+on  = [ "g", "D" ]
+run = "linemode size_and_mtime"
+desc = "View size and mtime"
+
