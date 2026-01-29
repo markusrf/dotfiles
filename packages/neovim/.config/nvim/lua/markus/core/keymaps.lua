@@ -39,6 +39,10 @@ vim.keymap.set("n", "<leader>qa", "<cmd>qa<CR>", { desc = "Quit all" })
 -- Substitude whole word under cursor, case sensitive
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace text" })
 
+-- Navigate qflist
+vim.keymap.set("n", "<leader>qj", "<cmd>cnext<CR>zz", { desc = "Next in quickfix list" })
+vim.keymap.set("n", "<leader>qk", "<cmd>cprev<CR>zz", { desc = "Next in quickfix list" })
+
 
 vim.keymap.set("n", "<leader><leader>fml", function()
   require("cellular-automaton").start_animation("make_it_rain")
