@@ -131,6 +131,16 @@ return {
           mappings = {
             i = {
               ["<C-f>"] = actions.to_fuzzy_refine,
+              ["<C-q>"] = function(bufnr)
+                actions.smart_send_to_qflist(bufnr)
+                actions.open_qflist(bufnr)
+              end,
+            },
+            n = {
+              ["<C-q>"] = function(bufnr)
+                actions.smart_send_to_qflist(bufnr)
+                actions.open_qflist(bufnr)
+              end,
             },
           }
         },
@@ -155,8 +165,18 @@ return {
           mappings = {
             i = {
               ["<C-k>"] = lga_actions.quote_prompt(),
-              ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
               ["<C-f>"] = actions.to_fuzzy_refine,
+              ["<C-q>"] = function(bufnr)
+                actions.smart_send_to_qflist(bufnr)
+                actions.open_qflist(bufnr)
+              end,
+            },
+            n = {
+              ["<C-q>"] = function(bufnr)
+                actions.smart_send_to_qflist(bufnr)
+                actions.open_qflist(bufnr)
+              end,
             },
           },
         },
