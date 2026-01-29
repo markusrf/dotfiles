@@ -131,6 +131,7 @@ alias gcl="git diff --shortstat `git hash-object -t tree /dev/null`"
 alias nivm="nvim"
 
 alias printcolors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'"'"'\n'"'"'}; done'
+alias wttr='curl "wttr.in/Trondheim?M&format=%l:+%c+%t+(%f)+%w+Rain:%p+UV:%u+++Sunrise:%S+Sunset:%s\n"'
 
 
 #############
