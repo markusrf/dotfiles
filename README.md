@@ -6,6 +6,11 @@ To get started, run the install script:
 ./install.sh
 ```
 
+To apply Mac settings:
+```sh
+./macos.sh
+```
+
 To stow individual package:
 ```sh
 cd packages
