@@ -227,6 +227,11 @@ return {
       },
     }
 
+    vim.lsp.config.ts_ls = {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     setup_snippets()
