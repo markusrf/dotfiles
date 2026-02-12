@@ -5,63 +5,74 @@ local setup_snippets = function()
   local t = ls.text_node
   local i = ls.insert_node
 
-  vim.keymap.set({ "i", "s" }, "<C-l>", function() ls.jump(1) end, { silent = true })
-  vim.keymap.set({ "i", "s" }, "<C-h>", function() ls.jump(-1) end, { silent = true })
+  vim.keymap.set({ "i", "s" }, "<C-l>", function()
+    ls.jump(1)
+  end, { silent = true })
+  vim.keymap.set({ "i", "s" }, "<C-h>", function()
+    ls.jump(-1)
+  end, { silent = true })
 
   ls.add_snippets("python", {
     s("def", {
-      t("def "), i(1, "foo"), t("("), i(2), t(") -> "), i(3, "None"), t({ ":", "" }),
-      t("    "), i(4, "pass")
-    })
+      t("def "),
+      i(1, "foo"),
+      t("("),
+      i(2),
+      t(") -> "),
+      i(3, "None"),
+      t({ ":", "" }),
+      t("    "),
+      i(4, "pass"),
+    }),
   })
 end
 
 local on_attach = function(client, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
-      desc = 'LSP: ' .. desc
+      desc = "LSP: " .. desc
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+  nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+  nmap("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+  nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+  nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+  nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+  nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap("K", vim.lsp.buf.hover, "Hover Documentation")
   -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
   -- nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   -- nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
+  nmap("<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
+  end, "[W]orkspace [L]ist Folders")
 
   -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
     if vim.lsp.buf.format then
       vim.lsp.buf.format()
     elseif vim.lsp.buf.formatting then
       vim.lsp.buf.formatting()
     end
-  end, { desc = 'Format current buffer with LSP' })
-  nmap('<leader>gf', '<CMD>Format<CR>', '[F]ormat buffer with LSP')
+  end, { desc = "Format current buffer with LSP" })
+  nmap("<leader>gf", "<CMD>Format<CR>", "[F]ormat buffer with LSP")
 
   -- Fixes (un)comment command for terraform files
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "terraform",
     callback = function()
       vim.bo.commentstring = "# %s"
-    end
+    end,
   })
 
   -- Enable/disable capabilites
@@ -107,13 +118,13 @@ local function filter(func, list)
 end
 
 -- Directory prefix of all package directories
-local package_prefix = vim.fn.expand((vim.env.XDG_DATA_HOME or '~/.local/share') .. '/nvim/site/')
+local package_prefix = vim.fn.expand((vim.env.XDG_DATA_HOME or "~/.local/share") .. "/nvim/site/")
 
 local function is_package_path(path)
   if package_prefix ~= string.sub(path, 1, #package_prefix) then
     return false
   end
-  return vim.fn.isdirectory(path .. '/lua') ~= 0
+  return vim.fn.isdirectory(path .. "/lua") ~= 0
 end
 
 return {
@@ -133,19 +144,15 @@ return {
   event = "VeryLazy",
 
   config = function()
-    local cmp = require('cmp')
+    local cmp = require("cmp")
     local cmp_lsp = require("cmp_nvim_lsp")
-    local capabilities = vim.tbl_deep_extend(
-      "force",
-      vim.lsp.protocol.make_client_capabilities(),
-      cmp_lsp.default_capabilities(),
-      {
+    local capabilities =
+      vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities(), {
         offsetEncoding = { "utf-16" },
         general = {
           positionEncodings = { "utf-16" },
         },
-      }
-    )
+      })
 
     require("fidget").setup({})
     require("mason").setup()
@@ -162,12 +169,10 @@ return {
       },
     })
 
-    vim.lsp.config("*",
-      {
-        capabilities = capabilities,
-        on_attach = on_attach,
-      }
-    )
+    vim.lsp.config("*", {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
 
     vim.lsp.config.lua_ls = {
       settings = {
@@ -178,11 +183,11 @@ return {
           },
           workspace = {
             -- See https://www.reddit.com/r/neovim/comments/x3bd4i/how_can_i_get_lsp_to_recognize_builtin_neovim_api/
-            library = filter(is_package_path, vim.api.nvim_get_runtime_file("", true))
+            library = filter(is_package_path, vim.api.nvim_get_runtime_file("", true)),
           },
           telemetry = { enable = false },
-        }
-      }
+        },
+      },
     }
 
     vim.lsp.config.basedpyright = {
@@ -193,11 +198,10 @@ return {
             diagnosticMode = "openFilesOnly",
             autoSearchPaths = true,
             useLibraryCodeForTypes = true,
-            extraPaths = {
-            },
-          }
-        }
-      }
+            extraPaths = {},
+          },
+        },
+      },
     }
 
     vim.lsp.config.terraformls = {
@@ -226,22 +230,21 @@ return {
     cmp.setup({
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+          require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+        ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<S-Esc>"] = cmp.mapping.abort(),
       }),
       sources = cmp.config.sources({
-          { name = 'nvim_lsp', priority = 8 },
-          { name = 'luasnip',  priority = 7 }, -- For luasnip users.
-        },
-        {
-          { name = 'buffer', priority = 6 },
-        }),
+        { name = "nvim_lsp", priority = 9 },
+        { name = "luasnip", priority = 8 }, -- For luasnip users.
+        { name = "path", priority = 7 },
+        { name = "buffer", priority = 6 },
+      }),
       comparators = {
         cmp.config.compare.locality,
         cmp.config.compare.recently_used,
@@ -261,8 +264,7 @@ return {
           [vim.diagnostic.severity.WARN] = "",
           [vim.diagnostic.severity.HINT] = "󰌵",
         },
-        linehl = {
-        },
+        linehl = {},
         numhl = {
           [vim.diagnostic.severity.ERROR] = "ErrorMsg",
           [vim.diagnostic.severity.WARN] = "WarningMsg",
@@ -277,5 +279,5 @@ return {
         prefix = "",
       },
     })
-  end
+  end,
 }

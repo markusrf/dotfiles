@@ -15,7 +15,7 @@ return {
         is_always_hidden = function(name)
           local m = name:match("^.DS_Store$")
           return m ~= nil
-        end
+        end,
       },
       float = {
         padding = 4,
@@ -28,7 +28,7 @@ return {
           if string.find(file_path, cwd, 1, true) then
             file_path = file_path:sub(#cwd + 1)
           end
-          return ' ' .. file_path .. ' '
+          return " " .. file_path .. " "
         end,
       },
       keymaps = {
@@ -48,5 +48,5 @@ return {
     vim.keymap.set("n", "-", function()
       oil.open_float(nil, { preview = { vertical = true } })
     end, {})
-  end
+  end,
 }

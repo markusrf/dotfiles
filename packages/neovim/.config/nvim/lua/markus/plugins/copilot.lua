@@ -24,8 +24,7 @@ return {
       },
     })
     vim.keymap.set("n", "<leader>ct", function()
-        require("copilot.suggestion").toggle_auto_trigger()
-      end,
-      { desc = "Toggle Copilot auto suggestion" })
+      require("copilot.suggestion").toggle_auto_trigger()
+    end, { desc = "Toggle Copilot auto suggestion" })
   end,
 }

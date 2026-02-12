@@ -4,17 +4,16 @@ return {
     version = "*",
     event = "InsertEnter",
     config = function()
-      require("mini.pairs").setup({
-      })
+      require("mini.pairs").setup({})
     end,
   },
 
   {
     "echasnovski/mini.splitjoin",
-    version = '*',
+    version = "*",
     event = "BufEnter",
     config = function()
       require("mini.splitjoin").setup({})
-    end
+    end,
   },
 }

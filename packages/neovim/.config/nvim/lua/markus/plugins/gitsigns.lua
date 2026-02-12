@@ -8,5 +8,5 @@ return {
         vim.keymap.set("n", "<leader>gb", gitsigns.blame, { desc = "Open git blame" })
       end,
     })
-  end
+  end,
 }

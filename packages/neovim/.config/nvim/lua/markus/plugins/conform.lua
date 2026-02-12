@@ -21,5 +21,5 @@ return {
         timeout_ms = 500,
       },
     })
-  end
+  end,
 }

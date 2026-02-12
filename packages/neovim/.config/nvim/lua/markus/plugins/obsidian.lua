@@ -23,20 +23,18 @@ return {
   --   "BufNewFile path/to/my-vault/*.md",
   -- },
   config = function()
-    require("obsidian").setup(
-      {
-        ui = {
-          enable = false, -- not compatible with render-markdown.nvim, see help *render-markdown-info-obsidian.nvim*
+    require("obsidian").setup({
+      ui = {
+        enable = false, -- not compatible with render-markdown.nvim, see help *render-markdown-info-obsidian.nvim*
+      },
+      legacy_commands = false,
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault",
         },
-        legacy_commands = false,
-        workspaces = {
-          {
-            name = "personal",
-            path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault",
-          },
-        },
-      }
-    )
+      },
+    })
     -- TODO: v3.14 supports using lsp keybinds instead of these
     -- but the on_attach function in lsp.lua is not run when obsidian_ls starts
     create_keymap("n", "<leader>ot", "<cmd>Obsidian tags<CR>", "Obsidian: Tags")

@@ -61,15 +61,24 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Based on https://github.com/nvim-telescope/telescope.nvim/issues/609#issuecomment-860963901
 local function setup_git_bcommits()
-  local previewers = require('telescope.previewers')
-  local builtin = require('telescope.builtin')
+  local previewers = require("telescope.previewers")
+  local builtin = require("telescope.builtin")
 
-  local delta = previewers.new_termopen_previewer {
+  local delta = previewers.new_termopen_previewer({
     get_command = function(entry)
-      return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--',
-        entry.current_file }
-    end
-  }
+      return {
+        "git",
+        "-c",
+        "core.pager=delta",
+        "-c",
+        "delta.side-by-side=false",
+        "diff",
+        entry.value .. "^!",
+        "--",
+        entry.current_file,
+      }
+    end,
+  })
 
   local git_bcommits_func = function(opts)
     opts = opts or {}
@@ -89,10 +98,8 @@ local function setup_git_bcommits()
   return git_bcommits_func
 end
 
-
 -- Set linenumbers in preview pane
-vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
-
+vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -117,8 +124,8 @@ return {
           mappings = {
             i = {
               ["<C-w>"] = actions.delete_buffer,
-            }
-          }
+            },
+          },
         },
         git_files = {
           show_untracked = true,
@@ -142,7 +149,7 @@ return {
                 actions.open_qflist(bufnr)
               end,
             },
-          }
+          },
         },
         lsp_references = {
           trim_text = true,
@@ -158,7 +165,7 @@ return {
           fuzzy = true,
           override_generic_sorter = true,
           override_file_sorter = true,
-          case_mode = "smart_case"
+          case_mode = "smart_case",
         },
         live_grep_args = {
           additional_args = grep_args,
@@ -180,7 +187,7 @@ return {
             },
           },
         },
-      }
+      },
     })
 
     telescope.load_extension("noice")
@@ -191,28 +198,25 @@ return {
     vim.keymap.set("n", "<leader>fF", builtin.git_files, { desc = "Telescope find git files" })
     vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Telescope oldfiles" })
     vim.keymap.set("n", "<leader>fb", function()
-        builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
-      end,
-      { desc = "Telescope buffers" }
-    )
+      builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
+    end, { desc = "Telescope buffers" })
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
     vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Telescope command history" })
     vim.keymap.set("n", "<leader>fC", builtin.commands, { desc = "Telescope commands" })
     vim.keymap.set("n", "<leader>fd", setup_git_bcommits(), { desc = "Telescope buffer commits" })
-    vim.keymap.set("n", "<leader>fg", telescope.extensions.live_grep_args.live_grep_args,
-      { desc = "Telescope live grep" })
-    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Telescope find word" })
-    vim.keymap.set("n", "<leader>fW",
-      function()
-        builtin.grep_string({ word_match = "-w", additional_args = { "--case-sensitive" } })
-      end,
-      { desc = "Telescope find exact word" })
-    vim.keymap.set("n", "<leader>ft",
-      function()
-        builtin.grep_string({ word_match = "-w", search = "TODO" })
-      end,
-      { desc = "Telescope grep TODO" }
+    vim.keymap.set(
+      "n",
+      "<leader>fg",
+      telescope.extensions.live_grep_args.live_grep_args,
+      { desc = "Telescope live grep" }
     )
+    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Telescope find word" })
+    vim.keymap.set("n", "<leader>fW", function()
+      builtin.grep_string({ word_match = "-w", additional_args = { "--case-sensitive" } })
+    end, { desc = "Telescope find exact word" })
+    vim.keymap.set("n", "<leader>ft", function()
+      builtin.grep_string({ word_match = "-w", search = "TODO" })
+    end, { desc = "Telescope grep TODO" })
     vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Telescope resume" })
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
     vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "Telescope spell suggestions" })

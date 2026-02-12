@@ -32,12 +32,7 @@ return {
 
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
-          if
-              vim.list_contains(
-                treesitter.get_installed(),
-                vim.treesitter.language.get_lang(args.match)
-              )
-          then
+          if vim.list_contains(treesitter.get_installed(), vim.treesitter.language.get_lang(args.match)) then
             vim.treesitter.start(args.buf)
             -- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
             -- vim.wo.foldmethod = "expr"
@@ -56,7 +51,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      require("nvim-treesitter-textobjects").setup {
+      require("nvim-treesitter-textobjects").setup({
         select = {
           lookahead = true,
           selection_modes = {
@@ -69,7 +64,7 @@ return {
         move = {
           set_jumps = false,
         },
-      }
+      })
 
       -- move
       vim.keymap.set({ "n", "x", "o" }, "]]", function()

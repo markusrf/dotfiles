@@ -29,13 +29,16 @@ return {
       sections = {
         {
           section = "terminal",
-          cmd = string.format("chafa %s --format symbols --symbols vhalf --stretch --size 60x16", randomDashboardImage()),
+          cmd = string.format(
+            "chafa %s --format symbols --symbols vhalf --stretch --size 60x16",
+            randomDashboardImage()
+          ),
           height = 16,
           padding = 1,
         },
         {
           -- pane = 2,
-          { section = "keys",   gap = 1, padding = 1 },
+          { section = "keys", gap = 1, padding = 1 },
           { section = "startup" },
         },
       },
@@ -51,7 +54,7 @@ return {
     -- words = { enabled = true },
     animate = { enabled = true },
     bufdelete = { enabled = true },
-  }
+  },
   -- keys = {
   --   { "<leader>sf",       function() Snacks.scratch() end,            desc = "Toggle Scratch Buffer" },
   --   { "<leader>S",        function() Snacks.scratch.select() end,     desc = "Select Scratch Buffer" },

@@ -8,5 +8,5 @@ return {
     vim.g.undotree_CustomDiffpanelCmd = "botright 10 new"
     vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree toggle" })
     vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeFocus, { desc = "Undotree focus" })
-  end
+  end,
 }

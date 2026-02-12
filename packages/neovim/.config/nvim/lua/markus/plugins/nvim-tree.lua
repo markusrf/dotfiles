@@ -29,13 +29,12 @@ local function my_on_attach(bufnr)
   end
 
   api.config.mappings.default_on_attach(bufnr)
-  vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+  vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
   vim.keymap.set("n", "h", lefty, opts("Close node"))
   vim.keymap.set("n", "<Left>", lefty, opts("Close node"))
   vim.keymap.set("n", "<Right>", righty, opts("Open node"))
   vim.keymap.set("n", "l", righty, opts("Open node"))
 end
-
 
 return {
   "nvim-tree/nvim-tree.lua",
@@ -45,7 +44,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("nvim-tree").setup {
+    require("nvim-tree").setup({
       view = {
         width = 45,
         relativenumber = true,
@@ -83,7 +82,7 @@ return {
         ignore = false,
       },
       on_attach = my_on_attach,
-    }
+    })
 
     vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer" })
     vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explore" })

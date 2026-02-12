@@ -9,4 +9,3 @@ return {
     -- leave opts empty for default
   },
 }
-

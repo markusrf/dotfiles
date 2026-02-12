@@ -3,12 +3,12 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    config = function ()
+    config = function()
       require("catppuccin").setup({
         flavour = "macchiato",
         transparent_background = false,
       })
-    end
+    end,
   },
   {
     "rose-pine/neovim",
@@ -16,9 +16,8 @@ return {
     lazy = true,
   },
   {
-    'kepano/flexoki-neovim',
-    name = 'flexoki',
+    "kepano/flexoki-neovim",
+    name = "flexoki",
     lazy = true,
   },
 }
-
