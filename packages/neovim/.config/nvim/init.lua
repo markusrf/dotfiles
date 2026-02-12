@@ -1,4 +1,4 @@
 vim.g.mapleader = " "
 
-require("markus.lazy")
-require("markus.core")
+require("custom.lazy")
+require("custom.core")
