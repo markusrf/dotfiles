@@ -123,21 +123,14 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/nvim-cmp",
-    "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
     "j-hui/fidget.nvim",
   },
   event = "VeryLazy",
 
   config = function()
-    local cmp = require("cmp")
     local cmp_lsp = require("cmp_nvim_lsp")
-    local capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(),
-      cmp_lsp.default_capabilities(), {
+    local capabilities =
+      vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities(), {
         offsetEncoding = { "utf-16" },
         general = {
           positionEncodings = { "utf-16" },
@@ -213,36 +206,7 @@ return {
       on_attach = on_attach,
     }
 
-    local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
     setup_snippets()
-
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-        end,
-      },
-      mapping = cmp.mapping.preset.insert({
-        ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-        ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<S-Esc>"] = cmp.mapping.abort(),
-      }),
-      sources = cmp.config.sources({
-        { name = "nvim_lsp", priority = 9 },
-        { name = "luasnip",  priority = 8 }, -- For luasnip users.
-        { name = "path",     priority = 7 },
-        { name = "buffer",   priority = 6 },
-      }),
-      comparators = {
-        cmp.config.compare.locality,
-        cmp.config.compare.recently_used,
-        cmp.config.compare.score,
-        cmp.config.compare.offset,
-        cmp.config.compare.order,
-      },
-    })
 
     vim.diagnostic.config({
       -- update_in_insert = true,

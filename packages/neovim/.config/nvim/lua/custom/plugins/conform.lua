@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  event = "VeryLazy",
+  event = "BufWritePre",
   config = function()
     local conform = require("conform")
     conform.setup({
