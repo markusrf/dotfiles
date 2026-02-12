@@ -195,6 +195,10 @@ function ogremote() {
   open -u $(gremote)
 }
 
+function pyd2jq() {
+  echo "$1" | sed 's/'\''/"/g' | sed 's/None/null/g' | jq
+}
+
 function mvi() {
   FILES=$(fd -t f -H | fzf -m)
   [[ -z "$FILES" ]] && return
