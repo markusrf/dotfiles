@@ -73,16 +73,6 @@ local on_attach = function(client, bufnr)
     --   client.server_capabilities.documentFormattingProvider = false
     --   client.server_capabilities.documentRangeFormattingProvider = false
   end
-
-  -- Autoformat on save
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    buffer = bufnr,
-    callback = function()
-      if client.supports_method("textDocument/formatting") then
-        vim.lsp.buf.format({ async = false, id = client.id })
-      end
-    end
-  })
 end
 
 -- Available capabilites
@@ -129,7 +119,6 @@ end
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "stevearc/conform.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
@@ -144,10 +133,6 @@ return {
   event = "VeryLazy",
 
   config = function()
-    require("conform").setup({
-      formatters_by_ft = {
-      }
-    })
     local cmp = require('cmp')
     local cmp_lsp = require("cmp_nvim_lsp")
     local capabilities = vim.tbl_deep_extend(
@@ -167,9 +152,11 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
+        "stylua",
         "basedpyright",
         "ruff",
         "ts_ls",
+        "biome",
         "terraformls",
         "bashls",
       },
