@@ -57,16 +57,6 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "[W]orkspace [L]ist Folders")
 
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-    if vim.lsp.buf.format then
-      vim.lsp.buf.format()
-    elseif vim.lsp.buf.formatting then
-      vim.lsp.buf.formatting()
-    end
-  end, { desc = "Format current buffer with LSP" })
-  nmap("<leader>gf", "<CMD>Format<CR>", "[F]ormat buffer with LSP")
-
   -- Fixes (un)comment command for terraform files
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "terraform",
@@ -146,8 +136,8 @@ return {
   config = function()
     local cmp = require("cmp")
     local cmp_lsp = require("cmp_nvim_lsp")
-    local capabilities =
-      vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities(), {
+    local capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(),
+      cmp_lsp.default_capabilities(), {
         offsetEncoding = { "utf-16" },
         general = {
           positionEncodings = { "utf-16" },
@@ -241,9 +231,9 @@ return {
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 9 },
-        { name = "luasnip", priority = 8 }, -- For luasnip users.
-        { name = "path", priority = 7 },
-        { name = "buffer", priority = 6 },
+        { name = "luasnip",  priority = 8 }, -- For luasnip users.
+        { name = "path",     priority = 7 },
+        { name = "buffer",   priority = 6 },
       }),
       comparators = {
         cmp.config.compare.locality,
