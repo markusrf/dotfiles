@@ -18,6 +18,7 @@ local parsers = {
   "toml",
   "vhs",
   "zsh",
+  "regex",
 }
 
 return {
