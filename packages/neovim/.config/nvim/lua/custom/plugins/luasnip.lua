@@ -22,6 +22,7 @@ end
 
 return {
   "saadparwaiz1/cmp_luasnip",
+  build = "make install_jsregexp",
   event = "InsertEnter",
   config = function()
     local ls = require("luasnip")
