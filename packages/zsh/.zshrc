@@ -132,6 +132,7 @@ alias nivm="nvim"
 
 alias printcolors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'"'"'\n'"'"'}; done'
 alias wttr='curl "wttr.in/Trondheim?M&format=%l:+%c+%t+(%f)+%w+Rain:%p+UV:%u+++Sunrise:%S+Sunset:%s\n"'
+alias fzfchafa='fd --type f "\.(png|jpg|jpeg|gif|svg)" | fzf --preview="chafa {} --format symbols --symbols vhalf --stretch --size 60x16"'
 
 
 #############
