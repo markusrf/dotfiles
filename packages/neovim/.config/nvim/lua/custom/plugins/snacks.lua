@@ -1,8 +1,8 @@
 local function randomDashboardImage()
   local dir = "~/.config/nvim/dashboard-images/"
   local images = {
-    "tropic_island_day.jpg",
-    "tropic_island_night.jpg",
+    "tropic_island_morning.jpg",
+    "tropic_island_evening.jpg",
     "pink-clouds.jpg",
     "pink-clouds.jpg",
     "pink-clouds.jpg",
