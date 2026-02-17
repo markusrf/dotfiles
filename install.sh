@@ -24,6 +24,17 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 
+# stow packages
+echo "Restowing packages"
+rm -f ./**/.DS_Store
+rm -f ~/.config/**/.DS_Store
+(cd packages; stow -t ~ -R *)
+
+
+# mise
+mise install
+
+
 # install oh-my-zsh
 if [[ -z "${ZSH+x}" ]]; then
   echo "Installing oh my zsh"
@@ -57,21 +68,6 @@ if [[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ]]; then
 fi
 
 
-# stow packages
-echo "Restowing packages"
-rm -f ./**/.DS_Store
-rm -f ~/.config/**/.DS_Store
-(cd packages; stow -t ~ -R *)
-
-
 # to make bat know about extra themes
 echo "Rebuilding bat cache"
 bat cache --build
-
-
-# asdf
-asdf plugin add python
-asdf plugin add uv
-asdf plugin add nodejs
-asdf plugin add pre-commit
-asdf install
