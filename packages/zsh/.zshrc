@@ -82,6 +82,7 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 eval "$(zoxide init zsh --cmd cd)"
+eval "$(mise activate zsh)"
 
 
 # Need to set JAVA_HOME on mac when installed with asdf
