@@ -52,6 +52,8 @@ setopt ignoreeof
 # bindkey "^[[1;9C" end-of-line        # cmd+→
 # User ctrl+U for 'backward-kill-line'
 
+eval "$(mise activate zsh)"
+
 DISABLE_AUTO_TITLE="true"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
@@ -82,7 +84,6 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 eval "$(zoxide init zsh --cmd cd)"
-eval "$(mise activate zsh)"
 
 
 # Need to set JAVA_HOME on mac when installed with asdf
