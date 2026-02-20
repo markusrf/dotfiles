@@ -86,11 +86,6 @@ export FZF_DEFAULT_OPTS=" \
 eval "$(zoxide init zsh --cmd cd)"
 
 
-# Need to set JAVA_HOME on mac when installed with asdf
-if command -v asdf >/dev/null 2>&1; then
-  asdf which java >/dev/null 2>&1 && . ~/.asdf/plugins/java/set-java-home.zsh
-fi
-
 if [[ -e ~/.work_funcs ]]; then
   source ~/.work_funcs
 fi
