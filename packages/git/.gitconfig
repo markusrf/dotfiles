@@ -1,7 +1,7 @@
 [include]
 	path = ~/.config/git/themes/catppuccin.gitconfig
 [user]
-	signingkey = A7323083D70B4B12
+	signingkey = 5322625ACD05D8D5
 	email = 8709797+markusrf@users.noreply.github.com
 	name = Markus Rye Foss
 [commit]
