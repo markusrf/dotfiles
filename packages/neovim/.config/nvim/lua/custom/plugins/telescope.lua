@@ -104,7 +104,6 @@ vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
 return {
   "nvim-telescope/telescope.nvim",
   tag = "v0.2.0",
-  -- commit = "814f102cd1da3dc78c7d2f20f2ef3ed3cdf0e6e4",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",
