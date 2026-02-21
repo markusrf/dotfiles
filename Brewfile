@@ -1,6 +1,5 @@
 tap "caarlos0/tap"
 
-brew "asdf"
 brew "astroterm"
 brew "bash"
 brew "chafa"

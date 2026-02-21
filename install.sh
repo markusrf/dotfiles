@@ -23,6 +23,8 @@ if ! command -v brew >/dev/null 2>&1; then
   $BREW bundle install --no-upgrade
 fi
 
+brew bundle install --no-upgrade
+
 
 # stow packages
 echo "Restowing packages"
