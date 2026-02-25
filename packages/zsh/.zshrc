@@ -34,7 +34,7 @@ function zvm_config() {
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions zsh-syntax-highlighting colored-man-pages zsh-vi-mode fzf-tab)
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH"/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -121,7 +121,7 @@ alias gitsha="git log --oneline --color=always --pretty=format:'%C(cyan)%h%Crese
 alias gitshac="gitsha | pbcopy"
 alias gitrmb="git branch | cut -c 3- | gum choose --no-limit | xargs git branch -D"
 alias gcatc="gitsha | xargs git cat-file commit"
-alias gcl="git diff --shortstat `git hash-object -t tree /dev/null`"
+alias gcl='git diff --shortstat $(git hash-object -t tree /dev/null)'
 
 alias nivm="nvim"
 
@@ -149,14 +149,14 @@ function obsidian() {
 
 # Mac setup for pomo
 function work() {
-  timer ${1:-50}m --format 24h && terminal-notifier \
+  timer "${1:-50}"m --format 24h && terminal-notifier \
     -message Pomodoro \
     -title 'Work Timer is up! Take a Break ☕️🤩' \
     -sound Crystal
 }
 
 function rest() {
-  timer ${1:-10}m --format 24h && terminal-notifier \
+  timer "${1:-10}"m --format 24h && terminal-notifier \
     -message Pomodoro \
     -title 'Break is over! Get back to work 🐸' \
     -sound Crystal
@@ -188,7 +188,7 @@ function gremote() {
 }
 
 function ogremote() {
-  open -u $(gremote)
+  open -u "$(gremote)"
 }
 
 function pyd2jq() {
@@ -196,10 +196,9 @@ function pyd2jq() {
 }
 
 function mvi() {
-  FILES=$(fd -t f -H | fzf -m)
+  FILES=($(fd -t f -H | fzf -m))
   [[ -z "$FILES" ]] && return
-  FILES="${FILES//$'\n'/ }"
   TARGET=$(fd -t d -H | fzf)
   [[ -z "$TARGET" ]] && return
-  mv $(echo $FILES) "$TARGET"
+  mv "${FILES[@]}" "$TARGET"
 }

@@ -158,5 +158,11 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     }
+
+    vim.lsp.config.bashls = {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "sh", "zsh", "bash" },
+    }
   end,
 }

@@ -15,6 +15,7 @@ return {
         css = { "biome-check" },
         terraform = { "terraform_fmt" },
         sh = { "shellcheck" },
+        zsh = { "shellcheck" },
         ["*"] = { "codespell" },
       },
       format_on_save = {
