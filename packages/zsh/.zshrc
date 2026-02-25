@@ -102,11 +102,6 @@ alias ll='ls -lAhG'
 alias mkdir='mkdir -p'
 alias path='echo $PATH | tr -s ":" "\n"'
 
-alias bb-check='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle check --no-upgrade -v --file=-'
-alias bb-install='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle install --no-upgrade --file=-'
-alias bb-upgrade='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle upgrade --file=-'
-alias bb-cleanup='cat Brewfile <(echo) Brewfile-extra <(echo) | brew bundle cleanup --file=-'
-
 alias tf='terraform'
 alias lg='lazygit'
 alias lzd='lazydocker'
@@ -201,4 +196,41 @@ function mvi() {
   TARGET=$(fd -t d -H | fzf)
   [[ -z "$TARGET" ]] && return
   mv "${FILES[@]}" "$TARGET"
+}
+
+# Opens a list of all brewfiles in the current directory.
+# After selecting one or more brewfiles a combined file is sent to the selected brew bundle command.
+function bb() {
+  COMBINED=""
+  for i in $(fd -t f --max-depth 1 "^brewfile.?" | fzf --preview="bat {} -l sh" -m --header="Select brewfiles"); do
+    COMBINED="$COMBINED"$(cat "$i")'\n'
+  done
+
+  [[ -z "$COMBINED" ]] && return
+
+  ACTION=$(gum choose "check installed" "check latest" "upgrade" "install" "cleanup" --header="Brew bundle action:")
+  case "$ACTION" in
+    "check installed")
+      echo "$COMBINED" | brew bundle check -v --no-upgrade --file=-
+    ;;
+    "check latest")
+      echo "$COMBINED" | brew bundle check -v --file=-
+    ;;
+    "upgrade")
+      echo "$COMBINED" | brew bundle upgrade --file=-
+    ;;
+    "install")
+      echo "$COMBINED" | brew bundle install --no-upgrade --file=-
+    ;;
+    "cleanup")
+      if ! echo "$COMBINED" | brew bundle cleanup --file=-; then
+        gum confirm "Uninstall listed packages?" --default=false && echo "$COMBINED" | brew bundle cleanup --force --file=-
+      else
+        echo "Nothing to cleanup"
+      fi
+    ;;
+    *)
+      return
+    ;;
+  esac
 }
