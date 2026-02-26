@@ -1,0 +1,6 @@
+cask "gimp"
+cask "keymapp"
+cask "obsidian"
+cask "rectangle"
+cask "spotify"
+cask "visual-studio-code"

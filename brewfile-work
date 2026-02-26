@@ -10,5 +10,5 @@ brew "tflint"
 brew "tfsec"
 
 cask "burp-suite"
-cask "docker"
+cask "docker-desktop"
 cask "pycharm"
