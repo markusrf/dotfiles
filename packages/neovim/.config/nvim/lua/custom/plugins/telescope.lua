@@ -22,17 +22,13 @@ local grep_args = {
   "--glob=!**/poetry.lock",
   "--glob=!**/uv.lock",
 }
-for _, v in ipairs(default_args) do
-  table.insert(grep_args, v)
-end
+vim.list_extend(grep_args, default_args)
 
 local find_command = {
   "rg",
   "--files",
 }
-for _, v in ipairs(default_args) do
-  table.insert(find_command, v)
-end
+vim.list_extend(find_command, default_args)
 
 local function filename_first(_, path)
   local tail = vim.fs.basename(path)
@@ -42,22 +38,6 @@ local function filename_first(_, path)
   end
   return string.format("%s\t\t%s\t\t", tail, parent)
 end
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "TelescopeResults",
-  callback = function(ctx)
-    vim.api.nvim_buf_call(ctx.buf, function()
-      vim.fn.matchadd("TelescopeParent", "\t\t.*$")
-      vim.api.nvim_set_hl(0, "TelescopeParent", {
-        link = "Comment",
-      })
-      vim.fn.matchadd("TelescopeParent2", "▏.*$")
-      vim.api.nvim_set_hl(0, "TelescopeParent2", {
-        link = "TelescopeMatching",
-      })
-    end)
-  end,
-})
 
 -- Based on https://github.com/nvim-telescope/telescope.nvim/issues/609#issuecomment-860963901
 local function setup_git_bcommits()
@@ -98,18 +78,38 @@ local function setup_git_bcommits()
   return git_bcommits_func
 end
 
--- Set linenumbers in preview pane
-vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
-
 return {
   "nvim-telescope/telescope.nvim",
-  tag = "v0.2.0",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",
   },
   event = "VeryLazy",
   config = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "TelescopeResults",
+      callback = function(ctx)
+        vim.api.nvim_buf_call(ctx.buf, function()
+          vim.fn.matchadd("TelescopeParent", "\t\t.*$")
+          vim.api.nvim_set_hl(0, "TelescopeParent", {
+            link = "Comment",
+          })
+          vim.fn.matchadd("TelescopeParent2", "▏.*$")
+          vim.api.nvim_set_hl(0, "TelescopeParent2", {
+            link = "TelescopeMatching",
+          })
+        end)
+      end,
+    })
+
+    -- Set linenumbers in preview pane
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "TelescopePreviewerLoaded",
+      callback = function()
+        vim.wo.number = true
+      end,
+    })
+
     local telescope = require("telescope")
     local actions = require("telescope.actions")
     local lga_actions = require("telescope-live-grep-args.actions")
@@ -160,12 +160,6 @@ return {
         path_display = filename_first,
       },
       extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = true,
-          override_file_sorter = true,
-          case_mode = "smart_case",
-        },
         live_grep_args = {
           additional_args = grep_args,
           mappings = {
@@ -221,6 +215,8 @@ return {
     vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "Telescope spell suggestions" })
     vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope keymaps" })
 
-    vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", { desc = "Noice messages" })
+    vim.keymap.set("n", "<leader>fn", function()
+      telescope.extensions.noice.noice()
+    end, { desc = "Noice messages" })
   end,
 }

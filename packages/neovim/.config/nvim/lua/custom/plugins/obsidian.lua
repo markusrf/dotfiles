@@ -1,5 +1,8 @@
+local obsidian_augroup = vim.api.nvim_create_augroup("ObsidianKeymaps", { clear = true })
+
 local function create_keymap(mode, keys, func, desc)
   vim.api.nvim_create_autocmd("User", {
+    group = obsidian_augroup,
     pattern = "ObsidianNoteEnter",
     callback = function(ev)
       vim.keymap.set(mode, keys, func, {

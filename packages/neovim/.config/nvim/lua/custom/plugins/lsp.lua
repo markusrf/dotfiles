@@ -1,3 +1,12 @@
+-- Fixes (un)comment command for terraform files
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("TerrformCommentString", { clear = true }),
+  pattern = "terraform",
+  callback = function()
+    vim.bo.commentstring = "# %s"
+  end,
+})
+
 local on_attach = function(client, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -27,14 +36,6 @@ local on_attach = function(client, bufnr)
   nmap("<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "[W]orkspace [L]ist Folders")
-
-  -- Fixes (un)comment command for terraform files
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "terraform",
-    callback = function()
-      vim.bo.commentstring = "# %s"
-    end,
-  })
 
   -- Enable/disable capabilites
   -- TODO somethings broken with this :(
@@ -93,7 +94,6 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
-        "stylua",
         "basedpyright",
         "ruff",
         "ts_ls",

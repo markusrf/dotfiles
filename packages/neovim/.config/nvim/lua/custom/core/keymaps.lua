@@ -2,15 +2,15 @@
 vim.keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
 
 -- better indenting
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
-vim.keymap.set("n", "<C-o>", "<C-o>zz")
-vim.keymap.set("n", "<C-i>", "<C-i>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "n", "nzz", { desc = "Next search result (centered)" })
+vim.keymap.set("n", "N", "Nzz", { desc = "Previous search result (centered)" })
+vim.keymap.set("n", "<C-o>", "<C-o>zz", { desc = "Jump back (centered)" })
+vim.keymap.set("n", "<C-i>", "<C-i>zz", { desc = "Jump forward (centered)" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 
 -- Move to window using the <ctrl> hjkl keys
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })

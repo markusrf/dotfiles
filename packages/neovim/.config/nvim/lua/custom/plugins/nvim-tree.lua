@@ -39,10 +39,15 @@ end
 return {
   "nvim-tree/nvim-tree.lua",
   version = "*",
-  event = "VeryLazy",
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
+    { "echasnovski/mini.icons", opts = {} },
   },
+  keys = {
+    { "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Toggle file explorer" },
+    { "<leader>ec", "<cmd>NvimTreeCollapse<CR>", desc = "Collapse file explorer" },
+    { "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "Refresh file explorer" },
+  },
+  cmd = { "NvimTreeFindFileToggle", "NvimTreeCollapse", "NvimTreeRefresh" },
   config = function()
     require("nvim-tree").setup({
       view = {
@@ -83,9 +88,5 @@ return {
       },
       on_attach = my_on_attach,
     })
-
-    vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer" })
-    vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explore" })
-    vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
   end,
 }

@@ -21,17 +21,17 @@ local setup_snippets = function()
 end
 
 return {
-  "saadparwaiz1/cmp_luasnip",
+  "L3MON4D3/LuaSnip",
   build = "make install_jsregexp",
   event = "InsertEnter",
   config = function()
     local ls = require("luasnip")
     vim.keymap.set({ "i", "s" }, "<C-l>", function()
       ls.jump(1)
-    end, { silent = true })
+    end, { silent = true, desc = "LuaSnip jump forward" })
     vim.keymap.set({ "i", "s" }, "<C-h>", function()
       ls.jump(-1)
-    end, { silent = true })
+    end, { silent = true, desc = "LuaSnip jump backward" })
 
     setup_snippets()
   end,

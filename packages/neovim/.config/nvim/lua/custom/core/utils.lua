@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 -- Chooses a random item from a list
 -- @param list array

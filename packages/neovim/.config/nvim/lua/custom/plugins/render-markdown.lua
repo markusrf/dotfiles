@@ -6,12 +6,9 @@ return {
   ft = "markdown",
   ---@module "render-markdown"
   ---@type render.md.UserConfig
-  opts = {},
-  config = function()
-    require("render-markdown").setup({
-      code = {
-        sign = false,
-      },
-    })
-  end,
+  opts = {
+    code = {
+      sign = false,
+    },
+  },
 }
