@@ -214,6 +214,7 @@ return {
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope marks" })
     vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "Telescope spell suggestions" })
     vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope keymaps" })
+    vim.keymap.set("n", "<leader>fi", builtin.diagnostics, { desc = "Telescope diagnostics" })
 
     vim.keymap.set("n", "<leader>fn", function()
       telescope.extensions.noice.noice()
