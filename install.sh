@@ -20,10 +20,10 @@ if ! command -v brew >/dev/null 2>&1; then
     sudo sh -c "echo $($BREW --prefix)/bin/bash >> /etc/shells"
   fi
 
-  $BREW bundle install --no-upgrade
+  $BREW bundle install --no-upgrade --file brewfile-core
 fi
 
-brew bundle install --no-upgrade
+brew bundle install --no-upgrade --file brewfile-core
 
 
 # stow packages
