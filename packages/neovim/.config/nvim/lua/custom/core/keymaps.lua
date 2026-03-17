@@ -44,6 +44,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>qj", "<cmd>cnext<CR>zz", { desc = "Next in quickfix list" })
 vim.keymap.set("n", "<leader>qk", "<cmd>cprev<CR>zz", { desc = "Previous in quickfix list" })
 
+-- toggle wrap
+vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrap" })
+
 vim.keymap.set("n", "<leader><leader>fml", function()
   require("cellular-automaton").start_animation("make_it_rain")
 end, { desc = "Make it rain" })
