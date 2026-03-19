@@ -29,3 +29,6 @@ opt.signcolumn = "yes" -- show sign column so that text doesnt shift
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.undofile = true -- save undohistory to file
+
+opt.shortmess:append("W")
+opt.shortmess:append("A")

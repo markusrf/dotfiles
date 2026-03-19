@@ -1,5 +1,10 @@
 return {
   "folke/noice.nvim",
+  dependencies = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
+  },
   event = "VeryLazy",
   config = function()
     require("noice").setup({
@@ -20,21 +25,45 @@ return {
         lsp_doc_border = false, -- add a border to hover docs and signature help
       },
       -- add any options here
-      -- routes = {
-      --   {
-      --     filter = {
-      --       event = 'msg_show',
-      --       any = {
-      --         { find = '%d+L, %d+B' },
-      --         { find = '; after #%d+' },
-      --         { find = '; before #%d+' },
-      --         { find = '%d fewer lines' },
-      --         { find = '%d more lines' },
-      --       },
-      --     },
-      --     opts = { skip = true },
-      --   }
-      -- },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            any = {
+              -- { find = "%d+L, %d+B" },
+              -- { find = "; after #%d+" },
+              -- { find = "; before #%d+" },
+              { find = "%d fewer lines" },
+              { find = "%d more lines" },
+              { find = "%d lines [><]ed %d time" },
+              { find = "%dB written" },
+            },
+          },
+          opts = { skip = true },
+        },
+        {
+          view = "cmdline_output",
+          filter = {
+            event = "msg_show",
+            kind = {
+              "shell_out",
+              "shell_err",
+            },
+          },
+          opts = {
+            skip = false,
+            level = "info",
+          },
+        },
+        {
+          view = "notify",
+          filter = {
+            event = "msg_show",
+            kind = { "list_cmd" },
+          },
+          opts = { skip = true },
+        },
+      },
     })
 
     vim.keymap.set("n", "<leader>nc", function()
@@ -44,9 +73,4 @@ return {
       require("noice").cmd("last")
     end, { desc = "Noice last" })
   end,
-  dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
-  },
 }
