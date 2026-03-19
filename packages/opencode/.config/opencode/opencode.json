@@ -8,6 +8,9 @@
       "grep *": "allow",
       "rg *": "allow",
       "stylua *": "allow",
-    },
+      "git diff *": "allow",
+      "git status *": "allow",
+      "git log *": "allow"
+    }
   }
 }
