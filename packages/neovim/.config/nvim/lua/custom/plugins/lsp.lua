@@ -100,6 +100,7 @@ return {
         "biome",
         "terraformls",
         "bashls",
+        "gh_actions_ls",
       },
     })
 
@@ -163,6 +164,11 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "sh", "zsh", "bash" },
+    }
+
+    vim.lsp.config.gh_actions_ls = {
+      capabilities = capabilities,
+      on_attach = on_attach,
     }
   end,
 }
