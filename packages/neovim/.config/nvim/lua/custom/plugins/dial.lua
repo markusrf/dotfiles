@@ -108,6 +108,7 @@ return {
           augend.integer.alias.decimal_int, -- nonnegative and negative decimal number
           augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
           augend.date.alias["%Y/%m/%d"], -- date (2022/02/19, etc.)
+          augend.semver.alias.semver,
           ordinal_numbers,
           weekdays,
           months,
