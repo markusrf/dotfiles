@@ -2,10 +2,16 @@ return {
   "catgoose/nvim-colorizer.lua",
   event = "BufReadPre",
   opts = {
-    parsers = { css = true },
+    parsers = {
+      css = true,
+      names = false,
+    },
     display = {
-      -- mode = "virtualtext",
-      -- virtualtext = { position = "before" },
+      mode = "virtualtext",
+      virtualtext = {
+        char = "󱓻",
+        position = "before",
+      },
     },
   },
 }
