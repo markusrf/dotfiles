@@ -30,7 +30,7 @@ return {
           filter = {
             event = "msg_show",
             any = {
-              -- { find = "%d+L, %d+B" },
+              { find = "%d+L, %d+B" },
               -- { find = "; after #%d+" },
               -- { find = "; before #%d+" },
               { find = "%d fewer lines" },
