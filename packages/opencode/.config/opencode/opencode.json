@@ -3,14 +3,21 @@
   "permission": {
     "bash": {
       "*": "ask",
-      "npm *": "allow",
-      "rm *": "deny",
-      "grep *": "allow",
-      "rg *": "allow",
-      "stylua *": "allow",
+      "fd *": "allow",
+      "find *": "allow",
       "git diff *": "allow",
+      "git log *": "allow",
       "git status *": "allow",
-      "git log *": "allow"
+      "grep *": "allow",
+      "head *": "allow",
+      "jq *": "allow",
+      "ls *": "allow",
+      "npm *": "allow",
+      "rg *": "allow",
+      "rm *": "ask",
+      "stylua *": "allow",
+      "tail *": "allow",
+      "wc *": "allow"
     }
   }
 }
