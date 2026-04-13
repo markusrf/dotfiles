@@ -24,6 +24,9 @@ local parsers = {
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    -- TODO: repo is archived, latest version requires nvim 0.12
+    -- see https://github.com/nvim-treesitter/nvim-treesitter/discussions/8627#discussioncomment-16440673
+    commit = "90cd6580e720caedacb91fdd587b747a6e77d61f",
     lazy = false,
     build = ":TSUpdate",
     config = function()
