@@ -3,6 +3,8 @@
   "permission": {
     "bash": {
       "*": "ask",
+      "awk *": "allow",
+      "echo *": "allow",
       "fd *": "allow",
       "find *": "allow",
       "git diff *": "allow",
@@ -13,8 +15,8 @@
       "jq *": "allow",
       "ls *": "allow",
       "npm *": "allow",
+      "npx vitest *": "allow",
       "rg *": "allow",
-      "awk *": "allow",
       "rm *": "ask",
       "stylua *": "allow",
       "tail *": "allow",
