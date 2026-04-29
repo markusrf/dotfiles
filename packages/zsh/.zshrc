@@ -124,6 +124,8 @@ alias printcolors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i
 alias wttr='curl "wttr.in/Trondheim?M&format=%l:+%c+%t+(%f)+%w+Rain:%p+UV:%u+++Sunrise:%S+Sunset:%s\n"'
 alias fzfchafa='fd --type f "\.(png|jpg|jpeg|gif|svg|webp)" | fzf --preview="chafa {} --format symbols --symbols vhalf --stretch --size 60x16"'
 
+alias sp='r'
+
 
 #############
 # FUNCTIONS #
@@ -187,7 +189,7 @@ function ogremote() {
 }
 
 function pyd2jq() {
-  echo "$1" | sed 's/'\''/"/g' | sed 's/None/null/g' | jq
+  echo "$1" | sed 's/'\''/"/g' | sed 's/None/null/g' | sed 's/True/true/g' | sed 's/False/false/g' | jq
 }
 
 function mvi() {
