@@ -16,6 +16,7 @@ return {
         terraform = { "terraform_fmt" },
         sh = { "shellcheck" },
         zsh = { "shellcheck" },
+        sql = { "sql_formatter" },
         ["*"] = { "codespell" },
       },
       format_on_save = {
