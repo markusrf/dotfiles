@@ -10,6 +10,7 @@ end
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" }, -- Optional for icons
+  event = "VeryLazy",
   config = function()
     require("lualine").setup({
       options = {
@@ -37,13 +38,19 @@ return {
           "searchcount",
           {
             macro_recording,
-            cond = require("noice").api.status.mode.has,
+            cond = function()
+              return require("noice").api.status.mode.has()
+            end,
           },
         },
         lualine_x = {
           {
-            require("noice").api.status.command.get,
-            cond = require("noice").api.status.command.has,
+            function()
+              return require("noice").api.status.command.get()
+            end,
+            cond = function()
+              return require("noice").api.status.command.has()
+            end,
           },
           "filetype",
         },
