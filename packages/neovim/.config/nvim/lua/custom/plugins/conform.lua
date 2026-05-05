@@ -17,7 +17,8 @@ return {
         sh = { "shellcheck" },
         zsh = { "shellcheck" },
         sql = { "sql_formatter" },
-        ["*"] = { "codespell" },
+        -- markdown = { "codespell" },
+        -- text = { "codespell" },
       },
       format_on_save = {
         lsp_format = "fallback",
