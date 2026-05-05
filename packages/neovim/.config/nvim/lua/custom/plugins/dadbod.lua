@@ -1,3 +1,7 @@
+local function db_completion()
+  require("cmp").setup.buffer({ sources = { { name = "vim-dadbod-completion" } } })
+end
+
 return {
   "tpope/vim-dadbod",
   dependencies = {
@@ -13,22 +17,21 @@ return {
   init = function()
     vim.g.db_ui_use_nerd_fonts = 1
   end,
-  config = function(_, opts)
-    vim.g.db_ui_save_location = vim.fn.stdpath("config") .. require("plenary.path").path.sep .. "db_ui"
+  config = function()
+    local sep = package.config:sub(1, 1)
+    vim.g.db_ui_save_location = vim.fn.stdpath("config") .. sep .. "db_ui"
+
+    local group = vim.api.nvim_create_augroup("custom.dadbod", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = {
-        "sql",
-      },
+      group = group,
+      pattern = { "sql" },
       command = [[setlocal omnifunc=vim_dadbod_completion#omni]],
     })
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = {
-        "sql",
-        "mysql",
-        "plsql",
-      },
+      group = group,
+      pattern = { "sql", "mysql", "plsql" },
       callback = function()
-        vim.schedule(opts.db_completion)
+        vim.schedule(db_completion)
       end,
     })
   end,
