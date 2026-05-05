@@ -86,7 +86,10 @@ return {
   },
   event = "VeryLazy",
   config = function()
+    local telescope_group = vim.api.nvim_create_augroup("custom.telescope", { clear = true })
+
     vim.api.nvim_create_autocmd("FileType", {
+      group = telescope_group,
       pattern = "TelescopeResults",
       callback = function(ctx)
         vim.api.nvim_buf_call(ctx.buf, function()
@@ -104,6 +107,7 @@ return {
 
     -- Set linenumbers in preview pane
     vim.api.nvim_create_autocmd("User", {
+      group = telescope_group,
       pattern = "TelescopePreviewerLoaded",
       callback = function()
         vim.wo.number = true
@@ -196,7 +200,9 @@ return {
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
     vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Telescope command history" })
     vim.keymap.set("n", "<leader>fC", builtin.commands, { desc = "Telescope commands" })
-    vim.keymap.set("n", "<leader>fd", setup_git_bcommits(), { desc = "Telescope buffer commits" })
+    vim.keymap.set("n", "<leader>fd", function()
+      setup_git_bcommits()()
+    end, { desc = "Telescope buffer commits" })
     vim.keymap.set(
       "n",
       "<leader>fg",
