@@ -1,12 +1,3 @@
--- Fixes (un)comment command for terraform files
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("TerrformCommentString", { clear = true }),
-  pattern = "terraform",
-  callback = function()
-    vim.bo.commentstring = "# %s"
-  end,
-})
-
 local on_attach = function(client, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -109,7 +100,7 @@ return {
       on_attach = on_attach,
     })
 
-    vim.lsp.config.lua_ls = {
+    vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
           runtime = { version = "LuaJIT" },
@@ -125,9 +116,9 @@ return {
           telemetry = { enable = false },
         },
       },
-    }
+    })
 
-    vim.lsp.config.basedpyright = {
+    vim.lsp.config("basedpyright", {
       settings = {
         basedpyright = {
           analysis = {
@@ -139,36 +130,35 @@ return {
           },
         },
       },
-    }
+    })
 
-    vim.lsp.config.terraformls = {
+    vim.lsp.config("terraformls", {
       filetypes = { "terraform" },
       -- cmd = { "terraform-ls", "serve", "-log-file", vim.fs.dirname(require("vim.lsp.log").get_filename()) .. "/terraform-ls.log" },
       cmd = { "terraform-ls", "serve", "-log-file", "/dev/null" },
-    }
+    })
 
-    vim.lsp.config.ruff = {
+    vim.lsp.config("ruff", {
       init_options = {
         settings = {
           logLevel = "warn",
         },
       },
-    }
+    })
 
-    vim.lsp.config.ts_ls = {
-      capabilities = capabilities,
-      on_attach = on_attach,
-    }
-
-    vim.lsp.config.bashls = {
-      capabilities = capabilities,
-      on_attach = on_attach,
+    vim.lsp.config("bashls", {
       filetypes = { "sh", "zsh", "bash" },
-    }
+    })
 
-    vim.lsp.config.gh_actions_ls = {
-      capabilities = capabilities,
-      on_attach = on_attach,
-    }
+    vim.lsp.enable({
+      "lua_ls",
+      "basedpyright",
+      "ruff",
+      "ts_ls",
+      "biome",
+      "terraformls",
+      "bashls",
+      "gh_actions_ls",
+    })
   end,
 }
