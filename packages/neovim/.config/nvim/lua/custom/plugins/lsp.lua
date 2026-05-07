@@ -1,44 +1,31 @@
-local on_attach = function(client, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = "LSP: " .. desc
-    end
+local function create_on_attach()
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local bufnr = args.buf
 
-    vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-  end
+      local nmap = function(keys, func, desc)
+        if desc then
+          desc = "LSP: " .. desc
+        end
+        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+      end
 
-  nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-  nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-  nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-  nmap("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-  nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-  nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-  nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-  nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
-  -- See `:help K` for why this keymap
-  nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  -- Lesser used LSP functionality
-  nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-  -- nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  -- nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap("<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, "[W]orkspace [L]ist Folders")
-
-  -- Enable/disable capabilites
-  -- TODO somethings broken with this :(
-  if client.name == "ruff" then
-    --   client.server_capabilities.diagnosticProvider = false
-    client.server_capabilities.hoverProvider = false
-    -- elseif client.name == "basedpyright" then
-    --   client.server_capabilities.documentFormattingProvider = false
-    --   client.server_capabilities.documentRangeFormattingProvider = false
-  end
+      nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+      nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+      nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+      nmap("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+      nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+      nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+      nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+      nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+      nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+      nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+      nmap("<leader>wl", function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end, "[W]orkspace [L]ist Folders")
+    end,
+  })
 end
-
 -- Available capabilites
 -- client.server_capabilities.callHierarchyProvider = false
 -- client.server_capabilities.codeActionProvider = false
@@ -86,6 +73,7 @@ return {
       ensure_installed = {
         "lua_ls",
         "basedpyright",
+        "zuban",
         "ruff",
         "ts_ls",
         "biome",
@@ -95,9 +83,10 @@ return {
       },
     })
 
+    create_on_attach()
+
     vim.lsp.config("*", {
       capabilities = capabilities,
-      on_attach = on_attach,
     })
 
     vim.lsp.config("lua_ls", {
@@ -119,6 +108,20 @@ return {
     })
 
     vim.lsp.config("basedpyright", {
+      on_init = function(client)
+        client.server_capabilities.hoverProvider = false
+        client.server_capabilities.definitionProvider = false
+        client.server_capabilities.declarationProvider = false
+        client.server_capabilities.typeDefinitionProvider = false
+        client.server_capabilities.implementationProvider = false
+        client.server_capabilities.referencesProvider = false
+        client.server_capabilities.documentHighlightProvider = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        client.server_capabilities.renameProvider = false
+        client.server_capabilities.signatureHelpProvider = nil
+        client.server_capabilities.codeActionProvider = false
+      end,
       settings = {
         basedpyright = {
           analysis = {
@@ -132,6 +135,17 @@ return {
       },
     })
 
+    vim.lsp.config("zuban", {
+      name = "zuban",
+      cmd = { "zuban", "server" },
+      root_markers = { "pyproject.toml", ".git" },
+      filetypes = { "python" },
+      -- Prefer diagnostics from basedpyright for now
+      on_init = function(client)
+        client.server_capabilities.diagnosticProvider = nil
+      end,
+    })
+
     vim.lsp.config("terraformls", {
       filetypes = { "terraform" },
       -- cmd = { "terraform-ls", "serve", "-log-file", vim.fs.dirname(require("vim.lsp.log").get_filename()) .. "/terraform-ls.log" },
@@ -139,6 +153,9 @@ return {
     })
 
     vim.lsp.config("ruff", {
+      on_init = function(client)
+        client.server_capabilities.hoverProvider = false
+      end,
       init_options = {
         settings = {
           logLevel = "warn",
@@ -152,6 +169,7 @@ return {
 
     vim.lsp.enable({
       "lua_ls",
+      "zuban",
       "basedpyright",
       "ruff",
       "ts_ls",
