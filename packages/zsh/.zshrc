@@ -188,8 +188,8 @@ function ogremote() {
   open -u "$(gremote)"
 }
 
-function pyd2jq() {
-  echo "$1" | sed 's/'\''/"/g' | sed 's/None/null/g' | sed 's/True/true/g' | sed 's/False/false/g' | jq
+function pyjq() {
+  pbpaste | sed 's/'\''/"/g' | sed 's/None/null/g' | sed 's/True/true/g' | sed 's/False/false/g' | jq
 }
 
 function mvi() {
