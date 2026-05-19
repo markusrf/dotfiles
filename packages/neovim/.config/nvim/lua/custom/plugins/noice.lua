@@ -37,6 +37,7 @@ return {
               { find = "%d more lines" },
               { find = "%d lines [><]ed %d time" },
               { find = "%dB written" },
+              { find = "DB: Query '.*' finished in" },
             },
           },
           opts = { skip = true },

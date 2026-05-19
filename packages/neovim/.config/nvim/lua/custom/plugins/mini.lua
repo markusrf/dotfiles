@@ -11,7 +11,7 @@ return {
   {
     "echasnovski/mini.splitjoin",
     version = "*",
-    event = "BufEnter",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("mini.splitjoin").setup({})
     end,
