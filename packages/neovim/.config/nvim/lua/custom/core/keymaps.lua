@@ -24,7 +24,10 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window 
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
+vim.keymap.set("n", "<leader>te", "<cmd>tabe<cr>", { desc = "New tab" })
 vim.keymap.set("n", "<leader>tc", "<cmd>tabc<cr>", { desc = "Close tab" })
+vim.keymap.set("n", "<leader>tn", "<cmd>tabn<cr>", { desc = "Next tab" })
+vim.keymap.set("n", "<leader>tp", "<cmd>tabp<cr>", { desc = "Previous tab" })
 
 -- Diagnostics
 vim.keymap.set("n", "]d", function()
