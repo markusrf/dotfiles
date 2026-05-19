@@ -32,11 +32,47 @@ return {
     config = function()
       local treesitter = require("nvim-treesitter")
       treesitter.setup({})
-      treesitter.install(parsers)
+
+      -- Only call install() for parsers that aren't already present. install()
+      -- spawns a job per parser even when up to date, which adds noticeable
+      -- startup cost. Defer the work so it never blocks UIEnter.
+      vim.schedule(function()
+        local installed = treesitter.get_installed()
+        local lookup = {}
+        for _, p in ipairs(installed) do
+          lookup[p] = true
+        end
+        local missing = {}
+        for _, p in ipairs(parsers) do
+          if not lookup[p] then
+            table.insert(missing, p)
+          end
+        end
+        if #missing > 0 then
+          treesitter.install(missing)
+        end
+      end)
+
+      -- Cache installed parsers; refresh after :TSUpdate or :TSInstall.
+      local installed_cache = nil
+      local function installed_set()
+        if installed_cache then
+          return installed_cache
+        end
+        installed_cache = {}
+        for _, p in ipairs(treesitter.get_installed()) do
+          installed_cache[p] = true
+        end
+        return installed_cache
+      end
+
+      local ts_group = vim.api.nvim_create_augroup("custom.treesitter", { clear = true })
 
       vim.api.nvim_create_autocmd("FileType", {
+        group = ts_group,
         callback = function(args)
-          if vim.list_contains(treesitter.get_installed(), vim.treesitter.language.get_lang(args.match)) then
+          local lang = vim.treesitter.language.get_lang(args.match)
+          if lang and installed_set()[lang] then
             vim.treesitter.start(args.buf)
             -- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
             -- vim.wo.foldmethod = "expr"
@@ -46,10 +82,35 @@ return {
         end,
       })
 
+      -- Bust the cache after parsers are installed/updated/removed.
+      vim.api.nvim_create_autocmd("User", {
+        group = ts_group,
+        pattern = { "TSUpdate", "TSInstall", "TSUninstall" },
+        callback = function()
+          installed_cache = nil
+        end,
+      })
+
+      -- Memoize per-bufnr; mise filename never changes for a given buffer
+      -- without :BufFilePost firing.
+      local mise_cache = {}
+      vim.api.nvim_create_autocmd({ "BufFilePost", "BufWipeout" }, {
+        group = ts_group,
+        callback = function(args)
+          mise_cache[args.buf] = nil
+        end,
+      })
+
       require("vim.treesitter.query").add_predicate("is-mise?", function(_, _, bufnr, _)
-        local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)
-        local filename = vim.fn.fnamemodify(filepath, ":t")
-        return string.match(filename, ".*mise.*%.toml$") ~= nil
+        local buf = tonumber(bufnr) or 0
+        local cached = mise_cache[buf]
+        if cached ~= nil then
+          return cached
+        end
+        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
+        local result = string.match(filename, ".*mise.*%.toml$") ~= nil
+        mise_cache[buf] = result
+        return result
       end, { force = true, all = false })
     end,
   },
