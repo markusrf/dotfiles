@@ -4,8 +4,25 @@ return {
   "stevearc/oil.nvim",
   ---@module "oil"
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-  lazy = false,
+  cmd = "Oil",
+  keys = {
+    {
+      "-",
+      function()
+        require("oil").open_float(nil, { preview = { vertical = true } })
+      end,
+      desc = "Oil: Open parent directory",
+    },
+  },
+  -- Load Oil if nvim is started with a directory as an argument
+  init = function()
+    if vim.fn.argc() >= 1 then
+      local arg = vim.fn.argv(0)
+      if type(arg) == "string" and vim.fn.isdirectory(arg) == 1 then
+        require("lazy").load({ plugins = { "oil.nvim" } })
+      end
+    end
+  end,
   config = function()
     local oil = require("oil")
     oil.setup({
@@ -43,9 +60,5 @@ return {
         },
       },
     })
-
-    vim.keymap.set("n", "-", function()
-      oil.open_float(nil, { preview = { vertical = true } })
-    end, { desc = "Oil: Open parent directory" })
   end,
 }
