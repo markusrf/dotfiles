@@ -70,6 +70,7 @@ return {
     require("fidget").setup({})
     require("mason").setup()
     require("mason-lspconfig").setup({
+      automatic_enable = false,
       ensure_installed = {
         "lua_ls",
         "basedpyright",
@@ -142,26 +143,28 @@ return {
       filetypes = { "python" },
       -- Prefer diagnostics from basedpyright for now
       on_init = function(client)
-        client.server_capabilities.diagnosticProvider = nil
+        -- client.server_capabilities.diagnosticProvider = nil
+        -- client.server_capabilities.referencesProvider = false
       end,
     })
 
     vim.lsp.config("terraformls", {
       filetypes = { "terraform" },
+      -- terraform-ls outputs all logs to stderr for some reason, making everything have log level ERROR
       -- cmd = { "terraform-ls", "serve", "-log-file", vim.fs.dirname(require("vim.lsp.log").get_filename()) .. "/terraform-ls.log" },
       cmd = { "terraform-ls", "serve", "-log-file", "/dev/null" },
     })
 
-    vim.lsp.config("ruff", {
-      on_init = function(client)
-        client.server_capabilities.hoverProvider = false
-      end,
-      init_options = {
-        settings = {
-          logLevel = "warn",
-        },
-      },
-    })
+    -- vim.lsp.config("ruff", {
+    --   on_init = function(client)
+    --     client.server_capabilities.hoverProvider = false
+    --   end,
+    --   init_options = {
+    --     settings = {
+    --       logLevel = "warn",
+    --     },
+    --   },
+    -- })
 
     vim.lsp.config("bashls", {
       filetypes = { "sh", "zsh", "bash" },
@@ -171,7 +174,7 @@ return {
       "lua_ls",
       "zuban",
       "basedpyright",
-      "ruff",
+      -- "ruff",
       "ts_ls",
       "biome",
       "terraformls",
