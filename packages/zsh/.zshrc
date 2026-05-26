@@ -106,6 +106,7 @@ alias tf='terraform'
 alias lg='lazygit'
 alias lzd='lazydocker'
 alias icat='kitten icat'
+alias azs='az account list -o tsv --query "[].name" | gum choose | xargs az account set -n'
 
 alias dcu='docker compose up --remove-orphans -d'
 alias dcub='docker compose up --build --remove-orphans -d'
