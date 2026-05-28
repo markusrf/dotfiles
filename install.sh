@@ -21,9 +21,9 @@ if ! command -v brew >/dev/null 2>&1; then
   fi
 
   $BREW bundle install --no-upgrade --file brewfile-core
+else
+  brew bundle install --no-upgrade --file brewfile-core
 fi
-
-brew bundle install --no-upgrade --file brewfile-core
 
 
 # stow packages
