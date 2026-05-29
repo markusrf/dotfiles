@@ -1,6 +1,15 @@
 return {
   "stevearc/conform.nvim",
   event = "BufWritePre",
+  keys = {
+    {
+      "<leader>gf",
+      function()
+        require("conform").format()
+      end,
+      desc = "Format using conform",
+    },
+  },
   config = function()
     local conform = require("conform")
     conform.setup({
@@ -25,7 +34,5 @@ return {
         timeout_ms = 500,
       },
     })
-
-    vim.keymap.set("n", "<leader>gf", conform.format, { desc = "Format using conform" })
   end,
 }

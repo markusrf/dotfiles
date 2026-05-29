@@ -2,12 +2,12 @@ return {
   "sindrets/diffview.nvim",
   keys = {
     {
-      "<leader>gh",
+      "<leader>gH",
       "<cmd>DiffviewFileHistory<cr>",
       desc = "Open git branch history",
     },
     {
-      "<leader>gf",
+      "<leader>gh",
       "<cmd>DiffviewFileHistory %<cr>",
       desc = "Open git file history",
     },
