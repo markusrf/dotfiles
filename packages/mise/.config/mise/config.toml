@@ -1,6 +1,6 @@
 [tools]
 bat = "0.26"
-delta = "0.19"
+delta = "latest"
 fd = "10"
 ffmpeg = "8"
 fzf = "0.73"
