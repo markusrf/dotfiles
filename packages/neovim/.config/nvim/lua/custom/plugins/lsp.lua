@@ -81,6 +81,7 @@ return {
         "terraformls",
         "bashls",
         "gh_actions_ls",
+        "zizmor",
       },
     })
 
@@ -180,6 +181,7 @@ return {
       "terraformls",
       "bashls",
       "gh_actions_ls",
+      "zizmor",
     })
   end,
 }
