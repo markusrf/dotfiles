@@ -27,7 +27,7 @@ return {
     -- TODO: repo is archived, latest version requires nvim 0.12
     -- see https://github.com/nvim-treesitter/nvim-treesitter/discussions/8627#discussioncomment-16440673
     commit = "90cd6580e720caedacb91fdd587b747a6e77d61f",
-    lazy = false,
+    event = "VeryLazy",
     build = ":TSUpdate",
     config = function()
       local treesitter = require("nvim-treesitter")
@@ -121,6 +121,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
+    event = "VeryLazy",
     config = function()
       require("nvim-treesitter-textobjects").setup({
         select = {
