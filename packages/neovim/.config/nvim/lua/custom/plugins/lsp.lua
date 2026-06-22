@@ -128,10 +128,6 @@ return {
         basedpyright = {
           analysis = {
             typeCheckingMode = "standard",
-            diagnosticMode = "openFilesOnly",
-            autoSearchPaths = true,
-            useLibraryCodeForTypes = true,
-            extraPaths = {},
           },
         },
       },
@@ -139,13 +135,11 @@ return {
 
     vim.lsp.config("zuban", {
       name = "zuban",
-      cmd = { "zuban", "server" },
-      root_markers = { "pyproject.toml", ".git" },
-      filetypes = { "python" },
       -- Prefer diagnostics from basedpyright for now
       on_init = function(client)
         -- client.server_capabilities.diagnosticProvider = nil
         -- client.server_capabilities.referencesProvider = false
+        client.server_capabilities.documentSymbolProvider = false
       end,
     })
 
@@ -156,17 +150,6 @@ return {
       cmd = { "terraform-ls", "serve", "-log-file", "/dev/null" },
     })
 
-    -- vim.lsp.config("ruff", {
-    --   on_init = function(client)
-    --     client.server_capabilities.hoverProvider = false
-    --   end,
-    --   init_options = {
-    --     settings = {
-    --       logLevel = "warn",
-    --     },
-    --   },
-    -- })
-
     vim.lsp.config("bashls", {
       filetypes = { "sh", "zsh", "bash" },
     })
@@ -175,7 +158,6 @@ return {
       "lua_ls",
       "zuban",
       "basedpyright",
-      -- "ruff",
       "ts_ls",
       "biome",
       "terraformls",
