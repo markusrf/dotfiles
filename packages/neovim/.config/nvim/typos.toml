@@ -1,0 +1,11 @@
+# https://github.com/crate-ci/typos/blob/master/docs/reference.md
+
+[default]
+extend-ignore-identifiers-re = []
+
+[default.extend-words]
+
+[default.extend-identifiers]
+
+[files]
+extend-exclude = ["lazy-lock.json", "*.spl", "*.add", "*.md", ".txt"]

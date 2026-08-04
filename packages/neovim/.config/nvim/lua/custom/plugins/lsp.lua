@@ -82,6 +82,7 @@ return {
         "bashls",
         "gh_actions_ls",
         "zizmor",
+        "typos_lsp",
       },
     })
 
@@ -154,6 +155,13 @@ return {
       filetypes = { "sh", "zsh", "bash" },
     })
 
+    vim.lsp.config("typos_lsp", {
+      init_options = {
+        config = vim.fn.stdpath("config") .. "/typos.toml",
+        diagnosticSeverity = "Hint",
+      },
+    })
+
     vim.lsp.enable({
       "lua_ls",
       "zuban",
@@ -164,6 +172,7 @@ return {
       "bashls",
       "gh_actions_ls",
       "zizmor",
+      "typos_lsp",
     })
   end,
 }
