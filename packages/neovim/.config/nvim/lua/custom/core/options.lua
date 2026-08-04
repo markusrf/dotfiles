@@ -31,3 +31,11 @@ opt.undofile = true -- save undohistory to file
 
 opt.shortmess:append("W")
 opt.shortmess:append("A")
+
+opt.spelllang = "en,nb"
+opt.spellsuggest = "best,9"
+opt.spelloptions = "camel"
+opt.spellfile = {
+  vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
+  vim.fn.stdpath("config") .. "/spell/nb.utf-8.add",
+}

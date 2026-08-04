@@ -1,2 +1,3 @@
 .DS_Store
 packages/neovim/.config/nvim/db_ui/connections.json
+*.add.spl

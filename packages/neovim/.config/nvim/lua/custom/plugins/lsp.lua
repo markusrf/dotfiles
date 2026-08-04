@@ -26,7 +26,7 @@ local function create_on_attach()
     end,
   })
 end
--- Available capabilites
+-- Available capabilities
 -- client.server_capabilities.callHierarchyProvider = false
 -- client.server_capabilities.codeActionProvider = false
 -- client.server_capabilities.completionProvider = false
