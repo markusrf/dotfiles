@@ -130,6 +130,9 @@ return {
             },
           },
         },
+        oldfiles = {
+          initial_mode = "normal",
+        },
         git_files = {
           show_untracked = true,
         },
