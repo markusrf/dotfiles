@@ -5,6 +5,10 @@ return {
     parsers = {
       css = true,
       names = false,
+      hex = {
+        rgb = false,
+        rgba = false,
+      },
     },
     display = {
       mode = "virtualtext",
