@@ -158,6 +158,7 @@ function rest() {
     -sound Crystal
 }
 
+# based on https://gist.github.com/bashbunni/f6b04fc4703903a71ce9f70c58345106
 function pom() {
   SPLIT=$(gum choose "25/5" "50/10" "all done" --header "Choose a pomodoro split.")
 
