@@ -15,6 +15,7 @@ local default_args = {
   "--glob=!**/main/data/*",
   "--glob=!**/.terraform/*",
   "--glob=!**/.DS_Store",
+  "--glob=!**/.import_linter_cache",
 }
 
 local grep_args = {
@@ -144,16 +145,6 @@ return {
           mappings = {
             i = {
               ["<C-f>"] = actions.to_fuzzy_refine,
-              ["<C-q>"] = function(bufnr)
-                actions.smart_send_to_qflist(bufnr)
-                actions.open_qflist(bufnr)
-              end,
-            },
-            n = {
-              ["<C-q>"] = function(bufnr)
-                actions.smart_send_to_qflist(bufnr)
-                actions.open_qflist(bufnr)
-              end,
             },
           },
         },
@@ -165,6 +156,20 @@ return {
       defaults = {
         layout_strategy = "vertical",
         path_display = filename_first,
+        mappings = {
+          i = {
+            ["<C-q>"] = function(bufnr)
+              actions.smart_send_to_qflist(bufnr)
+              actions.open_qflist(bufnr)
+            end,
+          },
+          n = {
+            ["<C-q>"] = function(bufnr)
+              actions.smart_send_to_qflist(bufnr)
+              actions.open_qflist(bufnr)
+            end,
+          },
+        },
       },
       extensions = {
         live_grep_args = {
