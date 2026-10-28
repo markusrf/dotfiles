@@ -162,6 +162,12 @@ return {
       },
     })
 
+    vim.lsp.config("mise", {
+      cmd = { "mise", "lsp" },
+      filetypes = { "toml" },
+      root_markers = { "mise.toml", ".mise.toml" },
+    })
+
     vim.lsp.enable({
       "lua_ls",
       "zuban",
@@ -173,6 +179,7 @@ return {
       "gh_actions_ls",
       "zizmor",
       "typos_lsp",
+      "mise",
     })
   end,
 }
