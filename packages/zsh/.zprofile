@@ -6,3 +6,6 @@ elif [[ $(uname -m) == "x86_64" ]]; then
 fi
 
 eval "$(mise activate zsh)"
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"

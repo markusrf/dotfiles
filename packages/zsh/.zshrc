@@ -134,14 +134,14 @@ alias sp='r'
 # arguments:
 #   $1 - vault name
 #   $2 - file name
-function obsidian() {
-    COMMAND="open \"obsidian://open"
-    [ -z "$1" ] && VAULT="" || VAULT="?vault=$1"
-    [ -z "$2" ] && FILE="" || FILE="&file=$2"
-    COMMAND="$COMMAND$VAULT$FILE\""
-    echo "$COMMAND"
-    eval "$COMMAND"
-}
+# function obsidian() {
+#     COMMAND="open \"obsidian://open"
+#     [ -z "$1" ] && VAULT="" || VAULT="?vault=$1"
+#     [ -z "$2" ] && FILE="" || FILE="&file=$2"
+#     COMMAND="$COMMAND$VAULT$FILE\""
+#     echo "$COMMAND"
+#     eval "$COMMAND"
+# }
 
 # Mac setup for pomo
 function work() {
