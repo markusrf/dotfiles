@@ -26,21 +26,21 @@ gui:
       - '#cad3f5'
     searchingActiveBorderColor:
       - '#eed49f'
-  # authorColors:
-  #   '*': '#b7bdf8'
-  branchColors:
-    'fix': '#ee99a0' # red
-    'patch': '#f5a97f' # peach
-    'wip': '#eed49f' # yellow
-    'refactor': '#8bd5ca' # teal
-    'feat': '#8aadf4' # blue
-    'release': '#c6a0f6' # mauve
-    'chore': '#f0c6c6' # flamingo
+    # authorColors:
+    #   '*': '#b7bdf8'
+    branchColorPatterns:
+      '^fix(/|$)': '#ee99a0' # red
+      '^patch(/|$)': '#f5a97f' # peach
+      '^wip(/|$)': '#eed49f' # yellow
+      '^refactor(/|$)': '#8bd5ca' # teal
+      '^feat(/|$)': '#8aadf4' # blue
+      '^release(/|$)': '#c6a0f6' # mauve
+      '^chore(/|$)': '#f0c6c6' # flamingo
 refresher:
   fetchInterval: 300
 git:
-  pagers:
-    - pager: "delta --paging=never"
+  diffRenderers:
+    - command: "delta --paging=never"
   log:
     showWholeGraph: false
   # 'cr' - relative date
