@@ -5,6 +5,12 @@ gui:
   expandFocusedSidePanel: true
   showCommandLog: true
   nerdFontsVersion: "3"
+  shrinkSidePanelsToContent: true
+  sidePanels:
+    - [files, worktrees, submodules]
+    - [branches, remotes, tags]
+    - [commits, reflog]
+    - [stash]
   theme:
     # Catppuccin macchiato
     activeBorderColor:
